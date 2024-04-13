@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS Usuarios;
+DROP TABLE IF EXISTS Clientes;
 DROP TABLE IF EXISTS Carros;
 DROP TABLE IF EXISTS Funcionarios;
 
-CREATE TABLE Usuarios (
+CREATE TABLE Clientes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     cpf VARCHAR(50) UNIQUE,
     nome VARCHAR(50)
@@ -10,11 +10,12 @@ CREATE TABLE Usuarios (
 
 CREATE TABLE Carros (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    taxa_dia Numero,
-    taxa_hora Numero,
-    placa Texto(7),
-    multa Numero,
-    cor Texto,
+    cor VARCHAR(50),
+    multa INTEGER,
+    placa VARCHAR(7),
+	modelo VARCHAR(50),
+	taxa_dia INTEGER,
+	estimativa_devolucao DATETIME,
     fk_Usuario_id INTEGER,
 	
 	FOREIGN KEY (fk_Usuario_id) REFERENCES Carros(id)
@@ -31,7 +32,7 @@ CREATE TABLE Funcionarios (
 --Permissões são um binario de 3 digitos 000
 --Ter o primeiro digito igual a um da permissão de criar funcionarios
 --Ter o segundo digito igual a um da permissão de criar carros
---Ter o terceiro digito igual a um da permissão de criar usuarios e alugar carros.
+--Ter o terceiro digito igual a um da permissão de criar Clientes e alugar carros.
 --111 = 7 é o maximo de permissões que é dado ao gerente.
 INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 	'admin', 
@@ -48,4 +49,25 @@ INSERT INTO Funcionarios(nome, hash_senha, cpf) VALUES (
 	1
 );
 
+--Multas são aplicadas caso o carro seja devolvido 1 hora após o esperado.
+INSERT INTO Carros(cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VALUES (
+	'Vermelho',
+	300,
+	'OTM 2X22',
+	'Celtinha rebaixado',
+	500,
+	'2021-12-01 14:30:15'
+);
+
+INSERT INTO Carros(cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VALUES (
+	'Prata',
+	100,
+	'RIO2A18',
+	'Go mil',
+	200,
+	'2021-12-01 14:30:15'
+);
+
 SELECT * FROM Funcionarios;
+SELECT * FROM Carros;
+SELECT * FROM Clientes;
