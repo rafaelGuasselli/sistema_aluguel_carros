@@ -8,7 +8,7 @@ class AluguelService:
 		self.carroMapper = CarroMapper()
 		self.clienteMapper = ClienteMapper()
 	
-	def alugar(carro, cliente):
+	def alugar(self, carro, cliente):
 		carro = self.carroMapper.listarWhereId(carro=carro)
 		cliente = self.clienteMapper.listarWhereCpf(cliente=cliente)
 		
@@ -24,9 +24,9 @@ class AluguelService:
 			raise Exception("Carro já está alugado!")
 
 		carro.cliente_id = cliente.id
-		self.carroMapper.atualize(carro=carro)
+		self.carroMapper.atualizar(carro=carro)
 	
-	def pagar(carro):
+	def pagar(self, carro):
 		carro = self.carroMapper.listarWhereId(carro=carro)
 
 		if carro is None:

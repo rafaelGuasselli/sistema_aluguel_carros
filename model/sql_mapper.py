@@ -8,7 +8,7 @@ class SqlMapper:
 	def __del__(self):
 		self.connection.close()
 	
-	def insert(self, sql, values):
+	def _insert(self, sql, values):
 		try:
 			self.cursor.execute(sql, values)
 			self.connection.commit()
@@ -19,7 +19,7 @@ class SqlMapper:
 			return False 
 	
 
-	def update(self, sql, values):
+	def _update(self, sql, values):
 		try:
 			self.cursor.execute(sql, values)
 			self.connection.commit()
@@ -28,7 +28,7 @@ class SqlMapper:
 			print(error)
 			return False 
 
-	def select(self, sql, values, fields, instanciar):
+	def _select(self, sql, values, fields, instanciar):
 		try:
 			self.cursor.execute(sql, values)
 			lista = []
@@ -43,7 +43,7 @@ class SqlMapper:
 			print(error)
 			return [] 
 
-	def delete(self, sql, values):
+	def _delete(self, sql, values):
 		try:
 			self.cursor.execute(sql, values)
 			self.connection.commit()
