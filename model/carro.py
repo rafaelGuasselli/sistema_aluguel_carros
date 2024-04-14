@@ -1,6 +1,6 @@
 class Carro:
-	def __init__(self, id):
-		self.id = id
+	def __init__(self):
+		self.id = 0
 		self.cor = ""
 		self.multa = 0
 		self.placa = ""
