@@ -38,7 +38,7 @@ class TestCarroMapper(unittest.TestCase):
 		carroId = carroDB.insert(carro)
 		self.assertTrue(carroId)
 
-		carro2 = carroDB.selectFromId(carroId)
+		carro2 = carroDB.selectWhere(id=carroId)
 		self.assertEqual(carro.modelo, carro2.modelo)
 
 		#Remover influencia no bd
@@ -53,7 +53,7 @@ class TestCarroMapper(unittest.TestCase):
 
 		carroDB.delete(id=carroId)
 
-		carro = carroDB.selectFromId(id=carroId)
+		carro = carroDB.selectWhere(id=carroId)
 		self.assertEqual(carro, None)
 		
 

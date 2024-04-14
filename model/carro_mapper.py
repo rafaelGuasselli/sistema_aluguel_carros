@@ -26,9 +26,9 @@ class CarroMapper:
 		values = ()
 		return self.__select(sql, values)
 	
-	def selectFromId(self, id=1):
+	def selectWhere(self, id=0,carro=Carro()):
 		sql = "SELECT * FROM Carros WHERE id = ?;"
-		values = (id,)
+		values = (id or carro.id,)
 		carros = self.__select(sql, values)
 		return None if len(carros) == 0 else carros[0]
 
