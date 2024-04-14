@@ -58,7 +58,3 @@ class TestFuncionarioMapper(unittest.TestCase):
 
 		funcionario = funcionarioDB.listarWhereId(id=funcionarioId)
 		self.assertEqual(funcionario, None)
-		
-
-if __name__ == '__main__':
-	unittest.main()

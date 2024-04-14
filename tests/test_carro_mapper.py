@@ -28,11 +28,7 @@ class TestCarroMapper(unittest.TestCase):
 	def test_insert(self):
 		carroDB = CarroMapper()
 		carro = Carro()
-		carro.modelo = "Prius"
-		carro.cor = "Vermelho"
-		carro.multa = 50
-		carro.placa = "abc123"
-		carro.taxa_dia = 200
+		carro.modelo = "A"
 		carro.estimativa_devolucao = None
 
 		carroId = carroDB.criar(carro)
@@ -67,7 +63,3 @@ class TestCarroMapper(unittest.TestCase):
 
 		carro = carroDB.listarWhereId(id=carroId)
 		self.assertEqual(carro, None)
-		
-
-if __name__ == '__main__':
-	unittest.main()

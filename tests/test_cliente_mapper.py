@@ -57,7 +57,3 @@ class TestClienteMapper(unittest.TestCase):
 
 		cliente = clienteDB.listarWhereId(id=clienteId)
 		self.assertEqual(cliente, None)
-		
-
-if __name__ == '__main__':
-	unittest.main()
