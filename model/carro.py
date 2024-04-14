@@ -6,4 +6,5 @@ class Carro:
 		self.placa = ""
 		self.modelo = ""
 		self.taxa_dia = 0
+		self.cliente_id = 0
 		self.estimativa_devolucao = None
