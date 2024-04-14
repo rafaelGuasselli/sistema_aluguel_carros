@@ -15,7 +15,7 @@ CREATE TABLE Carros (
     placa VARCHAR(7),
 	modelo VARCHAR(50),
 	taxa_dia INTEGER,
-	estimativa_devolucao DATETIME,
+	estimativa_devolucao DATETIME NULL,
     fk_Usuario_id INTEGER,
 	
 	FOREIGN KEY (fk_Usuario_id) REFERENCES Carros(id)
@@ -42,7 +42,7 @@ INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 );
 
 --001 = 1 é o nivel dos atendentes.
-INSERT INTO Funcionarios(nome, hash_senha, cpf) VALUES (
+INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 	'Rafael', 
 	'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 
 	'366.667.700-21',
