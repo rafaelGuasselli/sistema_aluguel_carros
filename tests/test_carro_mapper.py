@@ -8,11 +8,7 @@ class TestCarroMapper(unittest.TestCase):
 	def __init__(self, *args, **kwargs):
 		super(TestCarroMapper, self).__init__(*args, **kwargs)
 		self.carroMapper = CarroMapper()
-
-	def test(self):
-		print("Hello test!")
-		print()
-
+		
 	def test_select(self):
 		carros = self.carroMapper.listar()
 		self.assertIsInstance(carros, list)

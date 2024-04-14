@@ -44,8 +44,6 @@ class TestCarroService(unittest.TestCase):
 		carro = Carro()
 		carro.placa = self.criarStringAleatoria(7)
 		carro.id = self.carroService.criar(carro)
-		print(carro.id)
-
 		self.carroService.deletar(carro)
 
 	def criarStringAleatoria(self, tamanho):
