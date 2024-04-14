@@ -1,5 +1,5 @@
 import sqlite3
-from .Carro import Carro
+from .carro import Carro
 
 class CarroMapper:
 	def __init__(self):
@@ -15,11 +15,10 @@ class CarroMapper:
 		try:
 			self.cursor.execute("INSERT INTO Carros(id, cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VALUES (1, ?,?,?,?,?,?);", (carro.cor, carro.multa, carro.placa, carro.modelo, carro.taxa_dia, carro.estimativa_devolucao))
 			self.connection.commit()
-			return True
+			
+			return self.cursor.lastrowid
 		except sqlite3.Error as error:
-			print(error.sqlite_errorcode)
-			print(error.sqlite_errorname)
-			print(error.sqlite3_errmsg)
+			print(error)
 			return False 
 	
 	def update(self, carro):
@@ -28,9 +27,7 @@ class CarroMapper:
 			self.connection.commit()
 			return True
 		except sqlite3.Error as error:
-			print(error.sqlite_errorcode)
-			print(error.sqlite_errorname)
-			print(error.sqlite3_errmsg)
+			print(error)
 			return False 
 	
 	def select(self):
@@ -49,14 +46,12 @@ class CarroMapper:
 
 			return carros
 		except sqlite3.Error as error:
-			print(error.sqlite_errorcode)
-			print(error.sqlite_errorname)
-			print(error.sqlite3_errmsg)
+			print(error)
 			return [] 
 	
 	def delete(self, carro):
 		try:
-			self.cursor.execute("DELETE FROM Carros WHERE id = ?;", (carro.id, ))
+			self.cursor.execute("DELETE FROM Carros WHERE id = ?;", (carro.id,))
 			self.connection.commit()
 			return True
 		except sqlite3.Error as error:
