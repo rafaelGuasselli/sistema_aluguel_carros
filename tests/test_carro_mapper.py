@@ -38,11 +38,30 @@ class TestCarroMapper(unittest.TestCase):
 		carroId = carroDB.insert(carro)
 		self.assertTrue(carroId)
 
-		carro2 = carroDB.selectWhere(id=carroId)
+		carro2 = carroDB.selectWhereId(id=carroId)
 		self.assertEqual(carro.modelo, carro2.modelo)
 
 		#Remover influencia no bd
 		carroDB.delete(id=carroId)
+
+	def test_update(self):
+		carroDB = CarroMapper()
+		carro = Carro()
+		carro.modelo = "A"
+
+		carroId = carroDB.insert(carro)
+		
+		carro.id = carroId
+		carro.modelo = "B"
+
+		carroDB.update(carro)
+
+		carroNoBanco = carroDB.selectWhereId(carro=carro)
+		self.assertEqual(carro.modelo, carroNoBanco.modelo)
+		
+
+		#Remover influencia no bd
+		carroDB.delete(carro=carro)
 
 	def test_delete(self):
 		carroDB = CarroMapper()
@@ -53,7 +72,7 @@ class TestCarroMapper(unittest.TestCase):
 
 		carroDB.delete(id=carroId)
 
-		carro = carroDB.selectWhere(id=carroId)
+		carro = carroDB.selectWhereId(id=carroId)
 		self.assertEqual(carro, None)
 		
 
