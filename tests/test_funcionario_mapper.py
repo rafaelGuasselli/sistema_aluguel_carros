@@ -1,60 +1,50 @@
 import unittest
-from model.funcionario_mapper import FuncionarioMapper
+import random
+import string
 from model.funcionario import Funcionario
+from model.funcionario_mapper import FuncionarioMapper
 
 class TestFuncionarioMapper(unittest.TestCase):
-	def test_select(self):
-		funcionarioDB = FuncionarioMapper()
-		funcionarios = funcionarioDB.listar()
-		self.assertTrue(type(funcionarios) == list)
+	def __init__(self, *args, **kwargs):
+		super(TestFuncionarioMapper, self).__init__(*args, **kwargs)
+		self.funcionarioMapper = FuncionarioMapper()
 
-		count = 0
-		print()
-		for funcionario in funcionarios:
-			if count == 1:
-				break
-			print("------------")
-			print(funcionario.cpf)
-			print(funcionario.nome)
-			print(funcionario.permissoes)
-			print("-------------")
-			count += 1
-		print()
+	def test_select(self):
+		funcionarios = self.funcionarioMapper.listar()
+		self.assertIsInstance(funcionarios, list)
+		if len(funcionarios) > 0:
+			self.assertIsInstance(funcionarios[0], Funcionario)
 
 	def test_insert(self):
-		funcionarioDB = FuncionarioMapper()
 		funcionario = Funcionario()
-		funcionario.nome = "a"
+		funcionario.cpf = self.criarStringAleatoria(11)
 
-		funcionarioId = funcionarioDB.criar(funcionario)
-		self.assertTrue(funcionarioId)
+		funcionario.id = self.funcionarioMapper.criar(funcionario)
 
-		funcionarioNoBanco = funcionarioDB.listarWhereId(id=funcionarioId)
-		self.assertEqual(funcionario.nome, funcionarioNoBanco.nome)
+		funcionarioNoBanco = self.funcionarioMapper.listarWhereId(id=funcionario.id)
+		self.assertEqual(funcionario.cpf, funcionarioNoBanco.cpf)
 
 	def test_update(self):
-		funcionarioDB = FuncionarioMapper()
 		funcionario = Funcionario()
-		funcionario.nome = "A" 
+		funcionario.cpf = self.criarStringAleatoria(11)
 
-		funcionarioId = funcionarioDB.criar(funcionario)
-		
-		funcionario.id = funcionarioId
-		funcionario.nome = "B"
+		funcionario.id = self.funcionarioMapper.criar(funcionario)
+		funcionario.cpf = self.criarStringAleatoria(11)
 
-		funcionarioDB.atualizar(funcionario)
+		self.funcionarioMapper.atualizar(funcionario)
 
-		funcionarioNoBanco = funcionarioDB.listarWhereId(funcionario=funcionario)
-		self.assertEqual(funcionario.nome, funcionarioNoBanco.nome)
+		funcionarioNoBanco = self.funcionarioMapper.listarWhereId(funcionario=funcionario)
+		self.assertEqual(funcionario.cpf, funcionarioNoBanco.cpf)
 
 	def test_delete(self):
-		funcionarioDB = FuncionarioMapper()
 		funcionario = Funcionario()
+		funcionario.cpf = self.criarStringAleatoria(11)
 
-		funcionarioId = funcionarioDB.criar(funcionario)
-		self.assertTrue(funcionarioId)
+		funcionario.id = self.funcionarioMapper.criar(funcionario)
+		self.funcionarioMapper.deletar(id=funcionario.id)
 
-		funcionarioDB.deletar(id=funcionarioId)
-
-		funcionario = funcionarioDB.listarWhereId(id=funcionarioId)
+		funcionario = self.funcionarioMapper.listarWhereId(id=funcionario.id)
 		self.assertEqual(funcionario, None)
+
+	def criarStringAleatoria(self, tamanho):
+		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))
