@@ -31,9 +31,6 @@ class TestClienteMapper(unittest.TestCase):
 		clienteNoBanco = clienteDB.listarWhereId(id=clienteId)
 		self.assertEqual(cliente.nome, clienteNoBanco.nome)
 
-		#Remover influencia no bd
-		clienteDB.deletar(id=clienteId)
-
 	def test_update(self):
 		clienteDB = ClienteMapper()
 		cliente = Cliente()
@@ -48,10 +45,6 @@ class TestClienteMapper(unittest.TestCase):
 
 		clienteNoBanco = clienteDB.listarWhereId(cliente=cliente)
 		self.assertEqual(cliente.nome, clienteNoBanco.nome)
-		
-
-		#Remover influencia no bd
-		clienteDB.deletar(cliente=cliente)
 
 	def test_delete(self):
 		clienteDB = ClienteMapper()

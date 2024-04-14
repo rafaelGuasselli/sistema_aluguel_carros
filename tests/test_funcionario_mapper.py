@@ -32,9 +32,6 @@ class TestFuncionarioMapper(unittest.TestCase):
 		funcionarioNoBanco = funcionarioDB.listarWhereId(id=funcionarioId)
 		self.assertEqual(funcionario.nome, funcionarioNoBanco.nome)
 
-		#Remover influencia no bd
-		funcionarioDB.deletar(id=funcionarioId)
-
 	def test_update(self):
 		funcionarioDB = FuncionarioMapper()
 		funcionario = Funcionario()
@@ -49,10 +46,6 @@ class TestFuncionarioMapper(unittest.TestCase):
 
 		funcionarioNoBanco = funcionarioDB.listarWhereId(funcionario=funcionario)
 		self.assertEqual(funcionario.nome, funcionarioNoBanco.nome)
-		
-
-		#Remover influencia no bd
-		funcionarioDB.deletar(funcionario=funcionario)
 
 	def test_delete(self):
 		funcionarioDB = FuncionarioMapper()

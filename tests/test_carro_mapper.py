@@ -41,9 +41,6 @@ class TestCarroMapper(unittest.TestCase):
 		carro2 = carroDB.listarWhereId(id=carroId)
 		self.assertEqual(carro.modelo, carro2.modelo)
 
-		#Remover influencia no bd
-		carroDB.deletar(id=carroId)
-
 	def test_update(self):
 		carroDB = CarroMapper()
 		carro = Carro()
@@ -58,10 +55,6 @@ class TestCarroMapper(unittest.TestCase):
 
 		carroNoBanco = carroDB.listarWhereId(carro=carro)
 		self.assertEqual(carro.modelo, carroNoBanco.modelo)
-		
-
-		#Remover influencia no bd
-		carroDB.deletar(carro=carro)
 
 	def test_delete(self):
 		carroDB = CarroMapper()
