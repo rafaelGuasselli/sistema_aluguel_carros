@@ -1,59 +1,49 @@
+import random
+import string
 import unittest
-from model.cliente_mapper import ClienteMapper
 from model.cliente import Cliente
+from model.cliente_mapper import ClienteMapper
 
 class TestClienteMapper(unittest.TestCase):
-	def test_select(self):
-		clienteDB = ClienteMapper()
-		clientes = clienteDB.listar()
-		self.assertTrue(type(clientes) == list)
-
-		count = 0
-		print()
-		for cliente in clientes:
-			if count == 1:
-				break
-			print("------------")
-			print(cliente.cpf)
-			print(cliente.nome)
-			print("-------------")
-			count += 1
-		print()
+	def __init__(self, *args, **kwargs):
+		super(TestClienteMapper, self).__init__(*args, **kwargs)
+		self.clienteMapper = ClienteMapper()
 
 	def test_insert(self):
-		clienteDB = ClienteMapper()
 		cliente = Cliente()
-		cliente.nome = "a"
+		cliente.cpf = self.criarStringAleatoria(14)
 
-		clienteId = clienteDB.criar(cliente)
-		self.assertTrue(clienteId)
-
-		clienteNoBanco = clienteDB.listarWhereId(id=clienteId)
+		cliente.id = self.clienteMapper.criar(cliente)
+		clienteNoBanco = self.clienteMapper.listarWhereId(id=cliente.id)
 		self.assertEqual(cliente.nome, clienteNoBanco.nome)
+
+	def test_select(self):
+		clientes = self.clienteMapper.listar()
+		self.assertIsInstance(clientes, list)
+		if len(clientes) > 0:
+			self.assertIsInstance(clientes[0], Cliente)
 
 	def test_update(self):
-		clienteDB = ClienteMapper()
 		cliente = Cliente()
-		cliente.nome = "A" 
 
-		clienteId = clienteDB.criar(cliente)
-		
-		cliente.id = clienteId
-		cliente.nome = "B"
+		cliente.cpf = self.criarStringAleatoria(14)
+		cliente.id = self.clienteMapper.criar(cliente)
 
-		clienteDB.atualizar(cliente)
+		cliente.cpf = self.criarStringAleatoria(14)
+		self.clienteMapper.atualizar(cliente)
 
-		clienteNoBanco = clienteDB.listarWhereId(cliente=cliente)
-		self.assertEqual(cliente.nome, clienteNoBanco.nome)
+		clienteNoBanco = self.clienteMapper.listarWhereId(id=cliente.id)
+		self.assertEqual(cliente.cpf, clienteNoBanco.cpf)
 
 	def test_delete(self):
-		clienteDB = ClienteMapper()
 		cliente = Cliente()
+		cliente.cpf = self.criarStringAleatoria(14)
 
-		clienteId = clienteDB.criar(cliente)
-		self.assertTrue(clienteId)
+		cliente.id = self.clienteMapper.criar(cliente)
+		self.clienteMapper.deletar(id=cliente.id)
 
-		clienteDB.deletar(id=clienteId)
+		cliente = self.clienteMapper.listarWhereId(id=cliente.id)
+		self.assertEqual(cliente, None) 
 
-		cliente = clienteDB.listarWhereId(id=clienteId)
-		self.assertEqual(cliente, None)
+	def criarStringAleatoria(self, tamanho):
+		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))
