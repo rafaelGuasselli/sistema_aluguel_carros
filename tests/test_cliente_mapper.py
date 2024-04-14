@@ -37,12 +37,12 @@ class TestClienteMapper(unittest.TestCase):
 	def test_update(self):
 		clienteDB = ClienteMapper()
 		cliente = Cliente()
-		cliente.modelo = "A" 
+		cliente.nome = "A" 
 
 		clienteId = clienteDB.criar(cliente)
 		
 		cliente.id = clienteId
-		cliente.modelo = "B"
+		cliente.nome = "B"
 
 		clienteDB.atualizar(cliente)
 
