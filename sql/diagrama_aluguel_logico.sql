@@ -68,6 +68,13 @@ INSERT INTO Carros(cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VA
 	'2021-12-01 14:30:15'
 );
 
+
+INSERT INTO Clientes(cpf, nome) VALUES (
+	'000.000.000-00',
+	'Rafael'
+);
+
+
 SELECT * FROM Funcionarios;
 SELECT * FROM Carros;
 SELECT * FROM Clientes;
