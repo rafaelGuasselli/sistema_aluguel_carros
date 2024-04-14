@@ -54,7 +54,7 @@ INSERT INTO Carros(cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VA
 	'Vermelho',
 	300,
 	'OTM 2X22',
-	'Celtinha rebaixado',
+	'Celta',
 	500,
 	'2021-12-01 14:30:15'
 );
@@ -63,7 +63,7 @@ INSERT INTO Carros(cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VA
 	'Prata',
 	100,
 	'RIO2A18',
-	'Go mil',
+	'Go',
 	200,
 	'2021-12-01 14:30:15'
 );
