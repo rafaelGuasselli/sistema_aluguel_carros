@@ -41,7 +41,7 @@ class SqlMapper:
 			return lista
 		except sqlite3.Error as error:
 			print(error)
-			return [] 
+			return False
 
 	def _delete(self, sql, values):
 		try:
