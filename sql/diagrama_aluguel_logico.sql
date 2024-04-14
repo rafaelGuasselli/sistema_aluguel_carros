@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS Funcionarios;
 
 CREATE TABLE Clientes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cpf VARCHAR(50) UNIQUE,
+    cpf VARCHAR(14) UNIQUE,
     nome VARCHAR(50)
 );
 
