@@ -12,7 +12,7 @@ CREATE TABLE Carros (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     cor VARCHAR(50),
     multa INTEGER,
-    placa VARCHAR(7),
+    placa VARCHAR(7) UNIQUE,
 	modelo VARCHAR(50),
 	taxa_dia INTEGER,
 	estimativa_devolucao DATETIME NULL,
