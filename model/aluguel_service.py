@@ -33,5 +33,6 @@ class AluguelService:
 			raise Exception("Carro não existe!")
 		
 		carro.cliente_id = None
+		carro.estimativa_devolucao = None
 		self.clienteMapper.atualizar(cliente=cliente)
 
