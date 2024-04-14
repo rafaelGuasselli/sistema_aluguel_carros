@@ -10,12 +10,12 @@ class AluguelService:
 	
 	def alugar(self, carro, cliente):
 		carro = self.carroMapper.listarWhereId(carro=carro)
-		cliente = self.clienteMapper.listarWhereCpf(cliente=cliente)
+		clienteNoBanco = self.clienteMapper.listarWhereCpf(cliente=cliente)
 		
 		if carro is None:
 			raise Exception("Carro não existe!")
 		
-		if cliente is None:
+		if clienteNoBanco is None:
 			self.clienteMapper.criar(cliente=cliente)
 		else:
 			self.clienteMapper.atualizar(cliente=cliente)
@@ -34,5 +34,5 @@ class AluguelService:
 		
 		carro.cliente_id = None
 		carro.estimativa_devolucao = None
-		self.clienteMapper.atualizar(cliente=cliente)
+		self.carroMapper.atualizar(carro)
 
