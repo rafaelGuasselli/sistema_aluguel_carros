@@ -9,7 +9,7 @@ class TestCarroMapper(unittest.TestCase):
 
 	def test_select(self):
 		carroDB = CarroMapper()
-		carros = carroDB.select()
+		carros = carroDB.listar()
 		self.assertTrue(type(carros) == list)
 
 		count = 0
@@ -35,44 +35,44 @@ class TestCarroMapper(unittest.TestCase):
 		carro.taxa_dia = 200
 		carro.estimativa_devolucao = None
 
-		carroId = carroDB.insert(carro)
+		carroId = carroDB.criar(carro)
 		self.assertTrue(carroId)
 
-		carro2 = carroDB.selectWhereId(id=carroId)
+		carro2 = carroDB.listarWhereId(id=carroId)
 		self.assertEqual(carro.modelo, carro2.modelo)
 
 		#Remover influencia no bd
-		carroDB.delete(id=carroId)
+		carroDB.deletar(id=carroId)
 
 	def test_update(self):
 		carroDB = CarroMapper()
 		carro = Carro()
 		carro.modelo = "A"
 
-		carroId = carroDB.insert(carro)
+		carroId = carroDB.criar(carro)
 		
 		carro.id = carroId
 		carro.modelo = "B"
 
-		carroDB.update(carro)
+		carroDB.atualizar(carro)
 
-		carroNoBanco = carroDB.selectWhereId(carro=carro)
+		carroNoBanco = carroDB.listarWhereId(carro=carro)
 		self.assertEqual(carro.modelo, carroNoBanco.modelo)
 		
 
 		#Remover influencia no bd
-		carroDB.delete(carro=carro)
+		carroDB.deletar(carro=carro)
 
 	def test_delete(self):
 		carroDB = CarroMapper()
 		carro = Carro()
 
-		carroId = carroDB.insert(carro)
+		carroId = carroDB.criar(carro)
 		self.assertTrue(carroId)
 
-		carroDB.delete(id=carroId)
+		carroDB.deletar(id=carroId)
 
-		carro = carroDB.selectWhereId(id=carroId)
+		carro = carroDB.listarWhereId(id=carroId)
 		self.assertEqual(carro, None)
 		
 
