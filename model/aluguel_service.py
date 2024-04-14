@@ -1,5 +1,3 @@
-from model.carro import Carro
-from model.cliente import Cliente
 from model.carro_mapper import CarroMapper
 from model.cliente_mapper import ClienteMapper
 
