@@ -16,9 +16,9 @@ CREATE TABLE Carros (
 	modelo VARCHAR(50),
 	taxa_dia INTEGER,
 	estimativa_devolucao DATETIME NULL,
-    fk_Usuario_id INTEGER,
+    cliente_id INTEGER,
 	
-	FOREIGN KEY (fk_Usuario_id) REFERENCES Carros(id)
+	FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
 );
 
 CREATE TABLE Funcionarios (
