@@ -6,10 +6,9 @@ class Lista(Tk.Frame):
         super().__init__(master)
         self.photo = ImageTk.PhotoImage(Image.open("images/image.png"))
         self.containerList = Tk.Frame(self)
-        
         self.containerList.columnconfigure((0,2,4), weight=5)
         self.containerList.columnconfigure((1,3), weight=1, minsize=30)
-        
+
         # Para alugar, editar carros, editar usuarios
         self.permissions = "100" 
         self.columns = [0,2,4]
