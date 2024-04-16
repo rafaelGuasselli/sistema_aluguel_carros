@@ -1,8 +1,4 @@
 import tkinter as Tk
-from view.JanelaLogin import Login
+from view.JanelaCarros import JanelaCarros
 
-window = Login()
-
-
-    
-
+window = JanelaCarros()
