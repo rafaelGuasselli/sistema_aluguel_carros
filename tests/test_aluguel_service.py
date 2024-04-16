@@ -7,6 +7,9 @@ from model.aluguel_service import AluguelService
 
 
 class TestAluguelService(unittest.TestCase):
+	def __init__(self, *args, **kwargs):
+		super(TestAluguelService, self).__init__(*args, **kwargs)
+
 	def test_aluguel_aceito(self):
 		return
 		carroDb = CarroMapper()
