@@ -22,7 +22,7 @@ class ClienteService:
 		else:
 			clientes = self.clienteMapper.listar()
 		
-		if not clientes:
+		if clientes is False:
 			raise Exception("Falha ao ler clientes no banco de dados!")
 		
 		return clientes

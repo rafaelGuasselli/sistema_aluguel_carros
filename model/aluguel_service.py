@@ -1,36 +1,36 @@
-from model.carro_mapper import CarroMapper
-from model.cliente_mapper import ClienteMapper
+from model.carro_service import CarroService
+from model.cliente_service import ClienteService
 
 class AluguelService:
 	def __init__(self):
-		self.carroMapper = CarroMapper()
-		self.clienteMapper = ClienteMapper()
+		self.carroService = CarroService()
+		self.clienteService = ClienteService()
 	
 	def alugar(self, carro, cliente):
-		carro = self.carroMapper.listarWhereId(carro=carro)
-		clienteNoBanco = self.clienteMapper.listarWhereCpf(cliente=cliente)
+		carro = self.carroService.listar(carro=carro)
+		clienteNoBanco = self.clienteService.listar(cliente=cliente)
 		
 		if carro is None:
 			raise Exception("Carro não existe!")
 		
 		if clienteNoBanco is None:
-			self.clienteMapper.criar(cliente=cliente)
+			self.clienteService.criar(cliente=cliente)
 		else:
-			self.clienteMapper.atualizar(cliente=cliente)
+			self.clienteService.atualizar(cliente=cliente)
 
 		if carro.cliente_id != None:
 			raise Exception("Carro já está alugado!")
 
 		carro.cliente_id = cliente.id
-		self.carroMapper.atualizar(carro=carro)
+		self.carroService.atualizar(carro=carro)
 	
 	def pagar(self, carro):
-		carro = self.carroMapper.listarWhereId(carro=carro)
+		carro = self.carroService.listar(carro=carro)
 
 		if carro is None:
 			raise Exception("Carro não existe!")
 		
 		carro.cliente_id = None
 		carro.estimativa_devolucao = None
-		self.carroMapper.atualizar(carro)
+		self.carroService.atualizar(carro)
 
