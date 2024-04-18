@@ -4,7 +4,6 @@ import unittest
 from model.funcionario import Funcionario
 from model.funcionario_service import FuncionarioService
 
-
 class TestFuncionarioService(unittest.TestCase):
 	def __init__(self, *args, **kwargs):
 		super(TestFuncionarioService, self).__init__(*args, **kwargs)
@@ -12,6 +11,9 @@ class TestFuncionarioService(unittest.TestCase):
 
 	def test_login_aceito(self):
 		self.funcionarioService.login("435.402.600-72", "admin")
+
+	def test_login_rejeitado(self):
+		self.assertRaises(Exception, lambda: self.funcionarioService.login("435.402.600-72", ""))
 
 	def test_criar(self):
 		funcionario = Funcionario()
