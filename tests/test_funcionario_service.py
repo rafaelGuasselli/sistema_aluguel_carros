@@ -10,6 +10,9 @@ class TestFuncionarioService(unittest.TestCase):
 		super(TestFuncionarioService, self).__init__(*args, **kwargs)
 		self.funcionarioService = FuncionarioService()
 
+	def test_login_aceito(self):
+		self.funcionarioService.login("435.402.600-72", "admin")
+
 	def test_criar(self):
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)

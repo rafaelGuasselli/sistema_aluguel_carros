@@ -3,4 +3,5 @@ class Funcionario:
 		self.id = None
 		self.cpf = ""
 		self.nome = ""
+		self.senha = ""
 		self.permissoes = 0

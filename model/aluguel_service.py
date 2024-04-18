@@ -11,7 +11,7 @@ class AluguelService:
 			return self.__alugar(carro, cliente)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao alugar carro!\n{detalhes}"
+			mensagem = "Falha ao alugar carro!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def __alugar(self, carro, cliente):
@@ -37,7 +37,7 @@ class AluguelService:
 			return self.__pagar(carro)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao pagar carro!\n{detalhes}"
+			mensagem = "Falha ao pagar carro!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def __pagar(self, carro):

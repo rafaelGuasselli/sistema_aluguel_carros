@@ -9,7 +9,7 @@ class ClienteService:
 			return self.clienteMapper.criar(cliente)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao adicionar cliente no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao adicionar cliente no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def atualizar(self, cliente):
@@ -17,7 +17,7 @@ class ClienteService:
 			return self.clienteMapper.atualizar(cliente)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao atualizar cliente no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao atualizar cliente no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def listar(self, id=0, cliente=None):
@@ -25,7 +25,7 @@ class ClienteService:
 			return self.__listar(id, cliente)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao ler cliente no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao ler cliente no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def __listar(self, id=0, cliente=None):
@@ -42,5 +42,5 @@ class ClienteService:
 			self.clienteMapper.deletar(cliente=cliente)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao deletar cliente no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao deletar cliente no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)

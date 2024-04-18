@@ -9,7 +9,7 @@ class CarroService:
 			return self.carroMapper.criar(carro)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao adicionar carro no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao adicionar carro no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def atualizar(self, carro):
@@ -18,7 +18,7 @@ class CarroService:
 			return carroId
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao atualizar carro no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao atualizar carro no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def listar(self, id=0, carro=None):
@@ -26,7 +26,7 @@ class CarroService:
 			return self.__listar(id, carro)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao ler carros no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao ler carros no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
 	def __listar(self, id=0, carro=None):
@@ -42,5 +42,5 @@ class CarroService:
 			self.carroMapper.deletar(carro=carro)
 		except Exception as error:
 			detalhes = str(error)
-			mensagem = "Falha ao deletar carro no banco de dados!\n{detalhes}"
+			mensagem = "Falha ao deletar carro no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
