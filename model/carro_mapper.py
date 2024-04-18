@@ -21,7 +21,7 @@ class CarroMapper(SqlMapper):
 		fields = ("id", "cor", "multa", "placa", "modelo", "taxa_dia", "cliente_id", "estimativa_devolucao")
 		return super()._select(sql, values, fields, Carro)
 	
-	def listarWhereId(self, id=0,carro=Carro()):
+	def listarId(self, id=0,carro=Carro()):
 		sql = "SELECT id, cor, multa, placa, modelo, taxa_dia, cliente_id, estimativa_devolucao FROM Carros WHERE id = ?;"
 		values = (id or carro.id,)
 		fields = ("id", "cor", "multa", "placa", "modelo", "taxa_dia", "cliente_id", "estimativa_devolucao")
@@ -31,4 +31,4 @@ class CarroMapper(SqlMapper):
 	def deletar(self, id=0,carro=Carro()):
 		sql = "DELETE FROM Carros WHERE id = ?;"
 		values = (id or carro.id,)
-		return super()._delete(sql, values)
+		super()._delete(sql, values)

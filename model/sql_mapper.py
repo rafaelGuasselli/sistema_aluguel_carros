@@ -9,45 +9,26 @@ class SqlMapper:
 		self.connection.close()
 	
 	def _insert(self, sql, values):
-		try:
-			self.cursor.execute(sql, values)
-			self.connection.commit()
-			
-			return self.cursor.lastrowid
-		except sqlite3.Error as error:
-			print(error)
-			return False 
+		self.cursor.execute(sql, values)
+		self.connection.commit()
+		return self.cursor.lastrowid
 	
 
 	def _update(self, sql, values):
-		try:
-			self.cursor.execute(sql, values)
-			self.connection.commit()
-			return True
-		except sqlite3.Error as error:
-			print(error)
-			return False 
+		self.cursor.execute(sql, values)
+		self.connection.commit()
+		return self.cursor.lastrowid
 
 	def _select(self, sql, values, fields, instanciar):
-		try:
-			self.cursor.execute(sql, values)
-			lista = []
-			for row in self.cursor:
-				instancia = instanciar()
-				for field in fields:
-					setattr(instancia, field, row[field])
-				lista.append(instancia)
-
-			return lista
-		except sqlite3.Error as error:
-			print(error)
-			return False
+		self.cursor.execute(sql, values)
+		lista = []
+		for row in self.cursor:
+			instancia = instanciar()
+			for field in fields:
+				setattr(instancia, field, row[field])
+			lista.append(instancia)
+		return lista
 
 	def _delete(self, sql, values):
-		try:
-			self.cursor.execute(sql, values)
-			self.connection.commit()
-			return True
-		except sqlite3.Error as error:
-			print(error)
-			return False 
+		self.cursor.execute(sql, values)
+		self.connection.commit()

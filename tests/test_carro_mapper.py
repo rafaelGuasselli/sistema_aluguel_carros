@@ -20,7 +20,7 @@ class TestCarroMapper(unittest.TestCase):
 		carro.placa = self.criarStringAleatoria(7)
 
 		carro.id = self.carroMapper.criar(carro)
-		carroNoBanco = self.carroMapper.listarWhereId(id=carro.id)
+		carroNoBanco = self.carroMapper.listarId(id=carro.id)
 		 
 		self.assertEqual(carro.placa, carroNoBanco.placa)
 
@@ -33,7 +33,7 @@ class TestCarroMapper(unittest.TestCase):
 		carro.placa = self.criarStringAleatoria(7)
 		self.carroMapper.atualizar(carro)
 		
-		carroNoBanco = self.carroMapper.listarWhereId(id=carro.id)
+		carroNoBanco = self.carroMapper.listarId(id=carro.id)
 		self.assertEqual(carro.placa, carroNoBanco.placa)
 
 	def test_delete(self):
@@ -43,7 +43,7 @@ class TestCarroMapper(unittest.TestCase):
 		carro.id = self.carroMapper.criar(carro)
 		self.carroMapper.deletar(id=carro.id)
 		
-		carro = self.carroMapper.listarWhereId(id=carro.id)
+		carro = self.carroMapper.listarId(id=carro.id)
 		self.assertEqual(carro, None)
 		
 

@@ -21,7 +21,7 @@ class FuncionarioMapper(SqlMapper):
 		fields = ("id", "cpf", "nome", "permissoes")
 		return super()._select(sql, values, fields, Funcionario)
 
-	def listarWhereId(self, id=0, funcionario=Funcionario()):
+	def listarId(self, id=0, funcionario=Funcionario()):
 		sql = "SELECT id, cpf, nome, permissoes FROM Funcionarios WHERE id = ?;"
 		values = (id or funcionario.id,)
 		fields = ("id", "cpf", "nome", "permissoes")
@@ -31,4 +31,4 @@ class FuncionarioMapper(SqlMapper):
 	def deletar(self, id=0,funcionario=Funcionario()):
 		sql = "DELETE FROM Funcionarios WHERE id = ?;"
 		values = (id or funcionario.id,)
-		return super()._delete(sql, values)
+		super()._delete(sql, values)

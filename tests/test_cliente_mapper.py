@@ -14,7 +14,7 @@ class TestClienteMapper(unittest.TestCase):
 		cliente.cpf = self.criarStringAleatoria(14)
 
 		cliente.id = self.clienteMapper.criar(cliente)
-		clienteNoBanco = self.clienteMapper.listarWhereId(id=cliente.id)
+		clienteNoBanco = self.clienteMapper.listarId(id=cliente.id)
 		self.assertEqual(cliente.nome, clienteNoBanco.nome)
 
 	def test_select(self):
@@ -32,7 +32,7 @@ class TestClienteMapper(unittest.TestCase):
 		cliente.cpf = self.criarStringAleatoria(14)
 		self.clienteMapper.atualizar(cliente)
 
-		clienteNoBanco = self.clienteMapper.listarWhereId(id=cliente.id)
+		clienteNoBanco = self.clienteMapper.listarId(id=cliente.id)
 		self.assertEqual(cliente.cpf, clienteNoBanco.cpf)
 
 	def test_delete(self):
@@ -42,7 +42,7 @@ class TestClienteMapper(unittest.TestCase):
 		cliente.id = self.clienteMapper.criar(cliente)
 		self.clienteMapper.deletar(id=cliente.id)
 
-		cliente = self.clienteMapper.listarWhereId(id=cliente.id)
+		cliente = self.clienteMapper.listarId(id=cliente.id)
 		self.assertEqual(cliente, None) 
 
 	def criarStringAleatoria(self, tamanho):

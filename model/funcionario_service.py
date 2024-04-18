@@ -5,29 +5,42 @@ class FuncionarioService:
 		self.funcionarioMapper = FuncionarioMapper()
 	
 	def criar(self, funcionario):
-		funcionarioId = self.funcionarioMapper.criar(funcionario)
-		if not funcionarioId:
-			raise Exception("Falha ao adicionar funcionario no banco de dados!")
-		return funcionarioId
+		try:
+			return self.funcionarioMapper.criar(funcionario)
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao adicionar funcionario no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)
 
 	def atualizar(self, funcionario):
-		atualizado = self.funcionarioMapper.atualizar(funcionario)
-		if not atualizado:
-			raise Exception("Falha ao atualizar funcionario no banco de dados!")
+		try:
+			return self.funcionarioMapper.atualizar(funcionario)
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao atualizar funcionario no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)
 
 	def listar(self, id=0, funcionario=None):
+		try:
+			return self.__listar(id, funcionario)
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao ler funcionarios no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)
+	
+	def __listar(self, id=0, funcionario=None):
 		funcionarios = False
 		if id or funcionario:
-			funcionarios = self.funcionarioMapper.listarWhereId(id=id,funcionario=funcionario)
+			funcionarios = self.funcionarioMapper.listarId(id=id,funcionario=funcionario)
 		else:
 			funcionarios = self.funcionarioMapper.listar()
-		
-		if not funcionarios:
-			raise Exception("Falha ao ler funcionarios no banco de dados!")
 		
 		return funcionarios
 
 	def deletar(self, funcionario):
-		deletado = self.funcionarioMapper.deletar(funcionario=funcionario)
-		if not deletado:
-			raise Exception("Falha ao deletar funcionario no banco de dados!")
+		try:
+			return self.funcionarioMapper.deletar(funcionario=funcionario)
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao deletar funcionario no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)

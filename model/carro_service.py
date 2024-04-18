@@ -5,29 +5,42 @@ class CarroService:
 		self.carroMapper = CarroMapper()
 	
 	def criar(self, carro):
-		carroId = self.carroMapper.criar(carro)
-		if not carroId:
-			raise Exception("Falha ao adicionar carro no banco de dados!")
-		return carroId
+		try:
+			return self.carroMapper.criar(carro)
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao adicionar carro no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)
 
 	def atualizar(self, carro):
-		atualizado = self.carroMapper.atualizar(carro)
-		if not atualizado:
-			raise Exception("Falha ao atualizar carro no banco de dados!")
+		try:
+			carroId = self.carroMapper.atualizar(carro)
+			return carroId
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao atualizar carro no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)
 
 	def listar(self, id=0, carro=None):
+		try:
+			return self.__listar(id, carro)
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao ler carros no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)
+
+	def __listar(self, id=0, carro=None):
 		carros = False
 		if id or carro:
-			carros = self.carroMapper.listarWhereId(id=id,carro=carro)
+			carros = self.carroMapper.listarId(id=id,carro=carro)
 		else:
-			carros = self.carroMapper.listar()
-		
-		if not carros:
-			raise Exception("Falha ao ler carros no banco de dados!")
-		
+			carros = self.carroMapper.listar()		
 		return carros
 
 	def deletar(self, carro):
-		deletado = self.carroMapper.deletar(carro=carro)
-		if not deletado:
-			raise Exception("Falha ao deletar carro no banco de dados!")
+		try:
+			self.carroMapper.deletar(carro=carro)
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao deletar carro no banco de dados!\n{detalhes}"
+			raise Exception(mensagem)

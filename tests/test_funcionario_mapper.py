@@ -21,7 +21,7 @@ class TestFuncionarioMapper(unittest.TestCase):
 
 		funcionario.id = self.funcionarioMapper.criar(funcionario)
 
-		funcionarioNoBanco = self.funcionarioMapper.listarWhereId(id=funcionario.id)
+		funcionarioNoBanco = self.funcionarioMapper.listarId(id=funcionario.id)
 		self.assertEqual(funcionario.cpf, funcionarioNoBanco.cpf)
 
 	def test_update(self):
@@ -33,7 +33,7 @@ class TestFuncionarioMapper(unittest.TestCase):
 
 		self.funcionarioMapper.atualizar(funcionario)
 
-		funcionarioNoBanco = self.funcionarioMapper.listarWhereId(funcionario=funcionario)
+		funcionarioNoBanco = self.funcionarioMapper.listarId(funcionario=funcionario)
 		self.assertEqual(funcionario.cpf, funcionarioNoBanco.cpf)
 
 	def test_delete(self):
@@ -43,7 +43,7 @@ class TestFuncionarioMapper(unittest.TestCase):
 		funcionario.id = self.funcionarioMapper.criar(funcionario)
 		self.funcionarioMapper.deletar(id=funcionario.id)
 
-		funcionario = self.funcionarioMapper.listarWhereId(id=funcionario.id)
+		funcionario = self.funcionarioMapper.listarId(id=funcionario.id)
 		self.assertEqual(funcionario, None)
 
 	def criarStringAleatoria(self, tamanho):
