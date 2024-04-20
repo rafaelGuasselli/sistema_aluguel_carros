@@ -9,14 +9,6 @@ class TestFuncionarioService(unittest.TestCase):
 		super(TestFuncionarioService, self).__init__(*args, **kwargs)
 		self.funcionarioService = FuncionarioService()
 
-	def login(self):
-		self.funcionarioService.logout()
-		self.funcionarioService.login("435.402.600-72", "admin")
-
-	def login_sem_permissao(self):
-		self.funcionarioService.logout()
-		self.funcionarioService.login("366.667.700-21", "12345")
-
 	def test_login_aceito(self):
 		self.funcionarioService.logout()
 		self.funcionarioService.login("435.402.600-72", "admin")
@@ -96,6 +88,14 @@ class TestFuncionarioService(unittest.TestCase):
 		funcionario.cpf = self.criarStringAleatoria(14)
 		funcionario.id = self.funcionarioService.criar(funcionario)
 		self.funcionarioService.deletar(funcionario)
+
+	def login(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("435.402.600-72", "admin")
+
+	def login_sem_permissao(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("366.667.700-19", "12345")
 
 	def criarStringAleatoria(self, tamanho):
 		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))

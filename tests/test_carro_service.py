@@ -12,12 +12,15 @@ class TestCarroService(unittest.TestCase):
 		self.carroService = CarroService()
 		self.funcionarioService = FuncionarioService()
 
-	def login(self):
-		self.funcionarioService.logout()
-		self.funcionarioService.login("435.402.600-72", "admin")
-
 	def test_criar(self):
 		self.login()
+		self.criar()
+
+	def test_criar_sem_permissao(self):
+		self.login_sem_permissao()
+		self.assertRaises(Exception, self.criar)
+
+	def criar(self):
 		carro = Carro()
 		carro.placa = self.criarStringAleatoria(7)
 		self.carroService.criar(carro)
@@ -32,6 +35,13 @@ class TestCarroService(unittest.TestCase):
 
 	def test_atualizar(self):
 		self.login()
+		self.atualizar()
+
+	def test_atualizar_sem_permissao(self):
+		self.login_sem_permissao()
+		self.assertRaises(Exception, self.atualizar)
+
+	def atualizar(self):
 		carro = Carro()
 		carro.placa = self.criarStringAleatoria(7)
 		self.carroService.criar(carro)
@@ -51,12 +61,29 @@ class TestCarroService(unittest.TestCase):
 		carros = self.carroService.listar(id=carro.id)
 		self.assertIsInstance(carros, Carro)
 	
+
 	def test_deletar(self):
 		self.login()
+		self.deletar()
+	
+	def test_deletar_sem_permissao(self):
+		self.login_sem_permissao()
+		self.assertRaises(Exception, self.deletar)
+
+	def deletar(self):
 		carro = Carro()
 		carro.placa = self.criarStringAleatoria(7)
 		carro.id = self.carroService.criar(carro)
 		self.carroService.deletar(carro)
+
+	def login(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("366.667.700-21", "12345")
+
+	def login_sem_permissao(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("366.667.700-20", "12345")
+
 
 	def criarStringAleatoria(self, tamanho):
 		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))
