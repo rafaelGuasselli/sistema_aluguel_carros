@@ -11,7 +11,7 @@ class FuncionarioService:
 	
 	def login(self, cpf, senha):
 		try:
-			return self.__login(cpf, senha)
+			self.__login(cpf, senha)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao logar!\n{}".format(detalhes)
@@ -21,7 +21,8 @@ class FuncionarioService:
 		if self.cacheMapper.listar() != None:
 			raise Exception("Você já está logado!")
 
-		salt = uuid.uuid4().hex
+		#salt = uuid.uuid4().hex
+		#Com o salt não tem como comparar direto no bd sem carregar a senha na memoria.
 		senha_hash = hashlib.sha512(bytes(senha, 'utf-8')).hexdigest()
 		funcionario = self.funcionarioMapper.listarCpfSenha(cpf, senha_hash)
 		
@@ -29,7 +30,6 @@ class FuncionarioService:
 			raise Exception("Usuário ou senha incorretos!")
 
 		self.cacheMapper.criar(funcionario=funcionario)
-		return funcionario
 
 	def logout(self):
 		try:
