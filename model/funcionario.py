@@ -5,3 +5,15 @@ class Funcionario:
 		self.nome = ""
 		self.senha = ""
 		self.permissoes = 0
+	
+	def podeAlterarFuncionarios(self):
+		return (self.permissoes & 1<<2) > 0
+
+	def podeAlterarCarros(self):
+		return (self.permissoes & 1<<1) > 0
+
+	def podeCriarClientes(self):
+		return (self.permissoes & 1<<0) > 0
+
+	def podeCriarAlugueis(self):
+		return (self.permissoes & 1<<0) > 0
