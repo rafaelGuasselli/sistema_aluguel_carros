@@ -29,19 +29,13 @@ class JanelaCarros(Tk.Tk):
         
         Tk.Label(superior, text="Veículos", font=("Arial", 18, "bold")).pack(side="left", padx=(10,0))
         
-        # Cria o container para a listagem de carros
-        central = Tk.Frame(self)
-
         # Cria a lista de carros
-        self.lista = Lista(central)
-        self.containerList = Tk.Frame(self.lista.interior)
+        self.lista = Lista(self)
+        self.containerList = self.lista.interior
         self.__create_cars(self.containerList)
-        self.containerList.pack(fill="x", expand="true")
-        self.lista.pack(fill=Tk.BOTH)
-
 
         # Renderiza central e superior
-        central.grid(sticky="WE",row=1, column=0)
+        self.lista.grid(sticky="WE",row=1, column=0)
         superior.grid(row=0, sticky="NSWE")
     
     # A partir de informacoes varios elementos carros
