@@ -14,6 +14,3 @@ class Funcionario:
 
 	def podeAlterarClientes(self):
 		return (self.permissoes & 1<<0) > 0
-
-	def podeCriarAlugueis(self):
-		return (self.permissoes & 1<<0) > 0

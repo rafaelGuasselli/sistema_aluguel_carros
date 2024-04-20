@@ -37,9 +37,9 @@ CREATE TABLE Cache(
 );
  
 --Permissões são um binario de 3 digitos 000
---Ter o primeiro digito igual a um da permissão de criar funcionarios
---Ter o segundo digito igual a um da permissão de criar carros
---Ter o terceiro digito igual a um da permissão de criar Clientes e alugar carros.
+--Ter o primeiro digito igual a um da permissão de alterar Funcionarios
+--Ter o segundo digito igual a um da permissão de alterar Carros
+--Ter o terceiro digito igual a um da permissão de alterar Clientes
 --111 = 7 é o maximo de permissões que é dado ao gerente.
 INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 	'admin', 
@@ -50,7 +50,7 @@ INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 
 INSERT INTO Cache(funcionario_atual) VALUES(1);
 
---001 = 1 é o nivel dos atendentes.
+--011 = 3 é o nivel dos atendentes.
 INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 	'Rafael', 
 	'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 
