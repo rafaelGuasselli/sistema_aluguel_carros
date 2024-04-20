@@ -28,11 +28,13 @@ class TestFuncionarioService(unittest.TestCase):
 		self.funcionarioService.logout()
 
 	def test_criar(self):
+		self.test_login_aceito()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		self.funcionarioService.criar(funcionario)
 	
 	def test_criar_falha(self):
+		self.test_login_aceito()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 
@@ -40,16 +42,19 @@ class TestFuncionarioService(unittest.TestCase):
 		self.assertRaises(Exception, lambda: self.funcionarioService.criar(funcionario))
 
 	def test_atualizar(self):
+		self.test_login_aceito()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		self.funcionarioService.criar(funcionario)
 		self.funcionarioService.atualizar(funcionario)
 
 	def test_listar(self):
+		self.test_login_aceito()
 		funcionarios = self.funcionarioService.listar()
 		self.assertIsInstance(funcionarios, list)
 
 	def test_listar_id(self):
+		self.test_login_aceito()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		funcionario.id = self.funcionarioService.criar(funcionario)
@@ -58,6 +63,7 @@ class TestFuncionarioService(unittest.TestCase):
 		self.assertIsInstance(funcionarios, Funcionario)
 	
 	def test_deletar(self):
+		self.test_login_aceito()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		funcionario.id = self.funcionarioService.criar(funcionario)

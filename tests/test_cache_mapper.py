@@ -10,8 +10,13 @@ class TestCarroMapper(unittest.TestCase):
 		super(TestCarroMapper, self).__init__(*args, **kwargs)
 		self.cacheMapper = CacheMapper()
 		self.funcionarioService = FuncionarioService()
+
+	def login(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("435.402.600-72", "admin")
 	
 	def test_criar_sucesso(self):
+		self.login()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(11)
 		funcionario.id = self.funcionarioService.criar(funcionario)
@@ -23,6 +28,7 @@ class TestCarroMapper(unittest.TestCase):
 		self.assertEqual(funcionario.cpf, funcionarioNoCache.cpf)
 
 	def test_criar_ja_existe(self):
+		self.login()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(11)
 		funcionario.id = self.funcionarioService.criar(funcionario)
@@ -33,6 +39,7 @@ class TestCarroMapper(unittest.TestCase):
 
 		
 	def test_select(self):
+		self.login()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(11)
 		funcionario.id = self.funcionarioService.criar(funcionario)
@@ -44,6 +51,7 @@ class TestCarroMapper(unittest.TestCase):
 		self.assertIsInstance(funcionarioNoCache, Funcionario)
 
 	def test_delete(self):
+		self.login()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(11)
 		funcionario.id = self.funcionarioService.criar(funcionario)

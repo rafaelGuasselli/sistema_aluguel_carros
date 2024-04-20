@@ -1,6 +1,8 @@
+import hashlib, uuid
+from model.funcionario import Funcionario
 from model.cache_mapper import CacheMapper
 from model.funcionario_mapper import FuncionarioMapper
-import hashlib, uuid
+
 
 class FuncionarioService:
 	def __init__(self):
@@ -41,24 +43,35 @@ class FuncionarioService:
 		self.cacheMapper.deletar()
 
 	def criar(self, funcionario):
-		funcionario.senha = hashlib.sha512(bytes(funcionario.senha, 'utf-8')).hexdigest()
-		return self.__criar(funcionario)
-
-	def __criar(self, funcionario):
 		try:
-			return self.funcionarioMapper.criar(funcionario)
+			return self.__criar(funcionario)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao adicionar funcionario no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
+	def __criar(self, funcionario):
+		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
+		if (funcionarioAtual.podeAlterarFuncionarios() is False):
+			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
+
+		funcionario.senha = hashlib.sha512(bytes(funcionario.senha, 'utf-8')).hexdigest()
+		return self.funcionarioMapper.criar(funcionario)
+
 	def atualizar(self, funcionario):
 		try:
-			return self.funcionarioMapper.atualizar(funcionario)
+			return self.__atualizar(funcionario)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao atualizar funcionario no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
+
+	def __atualizar(self, funcionario):
+		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
+		if (funcionarioAtual.podeAlterarFuncionarios() is False):
+			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
+
+		return self.funcionarioMapper.atualizar(funcionario)
 
 	def listar(self, id=0, funcionario=None):
 		try:
@@ -69,6 +82,10 @@ class FuncionarioService:
 			raise Exception(mensagem)
 	
 	def __listar(self, id=0, funcionario=None):
+		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
+		if (funcionarioAtual.podeAlterarFuncionarios() is False):
+			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
+
 		funcionarios = False
 		if id or funcionario:
 			funcionarios = self.funcionarioMapper.listarId(id=id,funcionario=funcionario)
@@ -79,8 +96,15 @@ class FuncionarioService:
 
 	def deletar(self, funcionario):
 		try:
-			return self.funcionarioMapper.deletar(funcionario=funcionario)
+			return self.__deletar(funcionario=funcionario)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao deletar funcionario no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
+	
+	def __deletar(self, funcionario):
+		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
+		if (funcionarioAtual.podeAlterarFuncionarios() is False):
+			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
+
+		return self.funcionarioMapper.deletar(funcionario=funcionario)
