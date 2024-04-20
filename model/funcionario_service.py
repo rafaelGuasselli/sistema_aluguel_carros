@@ -22,7 +22,7 @@ class FuncionarioService:
 			raise Exception("Você já está logado!")
 
 		#salt = uuid.uuid4().hex
-		#Com o salt não tem como comparar direto no bd sem carregar a senha na memoria.
+		#TODO: Adicionar salt se tiver tempo.
 		senha_hash = hashlib.sha512(bytes(senha, 'utf-8')).hexdigest()
 		funcionario = self.funcionarioMapper.listarCpfSenha(cpf, senha_hash)
 		
