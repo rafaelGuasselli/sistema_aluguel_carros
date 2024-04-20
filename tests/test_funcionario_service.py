@@ -9,6 +9,14 @@ class TestFuncionarioService(unittest.TestCase):
 		super(TestFuncionarioService, self).__init__(*args, **kwargs)
 		self.funcionarioService = FuncionarioService()
 
+	def login(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("435.402.600-72", "admin")
+
+	def login_sem_permissao(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("366.667.700-21", "12345")
+
 	def test_login_aceito(self):
 		self.funcionarioService.logout()
 		self.funcionarioService.login("435.402.600-72", "admin")
@@ -23,18 +31,24 @@ class TestFuncionarioService(unittest.TestCase):
 		self.assertRaises(Exception, lambda:self.funcionarioService.login("435.402.600-72", "admin"))
 
 	def test_logout(self):
-		self.test_login_aceito()
+		self.login()
 		self.funcionarioService.logout()
 		self.funcionarioService.logout()
 
 	def test_criar(self):
-		self.test_login_aceito()
+		self.login()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		self.funcionarioService.criar(funcionario)
 	
+	def test_criar_sem_permissao(self):
+		self.login_sem_permissao()
+		funcionario = Funcionario()
+		funcionario.cpf = self.criarStringAleatoria(14)
+		self.assertRaises(Exception, lambda: self.funcionarioService.criar(funcionario))
+
 	def test_criar_falha(self):
-		self.test_login_aceito()
+		self.login()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 
@@ -42,19 +56,26 @@ class TestFuncionarioService(unittest.TestCase):
 		self.assertRaises(Exception, lambda: self.funcionarioService.criar(funcionario))
 
 	def test_atualizar(self):
-		self.test_login_aceito()
+		self.login()
+		self.atualizar()
+
+	def test_atualizar_sem_permissao(self):
+		self.login_sem_permissao()
+		self.assertRaises(Exception, self.atualizar)
+
+	def atualizar(self):
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		self.funcionarioService.criar(funcionario)
 		self.funcionarioService.atualizar(funcionario)
 
 	def test_listar(self):
-		self.test_login_aceito()
+		self.login()
 		funcionarios = self.funcionarioService.listar()
 		self.assertIsInstance(funcionarios, list)
 
 	def test_listar_id(self):
-		self.test_login_aceito()
+		self.login()
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		funcionario.id = self.funcionarioService.criar(funcionario)
@@ -63,7 +84,14 @@ class TestFuncionarioService(unittest.TestCase):
 		self.assertIsInstance(funcionarios, Funcionario)
 	
 	def test_deletar(self):
-		self.test_login_aceito()
+		self.login()
+		self.deletar()
+
+	def test_deletar_sem_permissao(self):
+		self.login_sem_permissao()
+		self.assertRaises(Exception, self.deletar)
+
+	def deletar(self):
 		funcionario = Funcionario()
 		funcionario.cpf = self.criarStringAleatoria(14)
 		funcionario.id = self.funcionarioService.criar(funcionario)
