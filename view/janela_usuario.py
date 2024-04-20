@@ -1,6 +1,6 @@
 import tkinter as Tk
 from tkinter import ttk
-from view.Lista import Lista
+from view.lista import Lista
 
 class JanelaUsuarios(Tk.Toplevel):
 # class JanelaUsuarios(Tk.Tk):

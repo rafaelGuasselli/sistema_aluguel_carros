@@ -1,5 +1,5 @@
 import tkinter as Tk
-from view.VerticalScrolledFrame import VerticalScrolledFrame
+from view.vertical_scrolled_frame import VerticalScrolledFrame
 
 class Lista(VerticalScrolledFrame):
     def __init__(self, parent, *args, **kw):
