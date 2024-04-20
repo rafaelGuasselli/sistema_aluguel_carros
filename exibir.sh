@@ -1,0 +1,1 @@
+sqlite3 -header -box aluguel_carros.db < sql/exibir.sql 
