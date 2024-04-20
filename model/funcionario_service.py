@@ -82,10 +82,6 @@ class FuncionarioService:
 			raise Exception(mensagem)
 	
 	def __listar(self, id=0, funcionario=None):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
-		if (funcionarioAtual.podeAlterarFuncionarios() is False):
-			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
-
 		funcionarios = False
 		if id or funcionario:
 			funcionarios = self.funcionarioMapper.listarId(id=id,funcionario=funcionario)

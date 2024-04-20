@@ -9,7 +9,7 @@ class TestFuncionario(unittest.TestCase):
 		funcionario = Funcionario()
 		self.assertFalse(funcionario.podeAlterarFuncionarios())
 		self.assertFalse(funcionario.podeAlterarCarros())
-		self.assertFalse(funcionario.podeCriarClientes())
+		self.assertFalse(funcionario.podeAlterarClientes())
 		self.assertFalse(funcionario.podeCriarAlugueis())
 
 	def test_aluguel(self):
@@ -17,7 +17,7 @@ class TestFuncionario(unittest.TestCase):
 		funcionario.permissoes = 1
 		self.assertFalse(funcionario.podeAlterarFuncionarios())
 		self.assertFalse(funcionario.podeAlterarCarros())
-		self.assertTrue(funcionario.podeCriarClientes())
+		self.assertTrue(funcionario.podeAlterarClientes())
 		self.assertTrue(funcionario.podeCriarAlugueis())
 
 	def test_carros(self):
@@ -25,7 +25,7 @@ class TestFuncionario(unittest.TestCase):
 		funcionario.permissoes = 2
 		self.assertFalse(funcionario.podeAlterarFuncionarios())
 		self.assertTrue(funcionario.podeAlterarCarros())
-		self.assertFalse(funcionario.podeCriarClientes())
+		self.assertFalse(funcionario.podeAlterarClientes())
 		self.assertFalse(funcionario.podeCriarAlugueis())
 
 	def test_funcionarios(self):
@@ -33,7 +33,7 @@ class TestFuncionario(unittest.TestCase):
 		funcionario.permissoes = 4
 		self.assertTrue(funcionario.podeAlterarFuncionarios())
 		self.assertFalse(funcionario.podeAlterarCarros())
-		self.assertFalse(funcionario.podeCriarClientes())
+		self.assertFalse(funcionario.podeAlterarClientes())
 		self.assertFalse(funcionario.podeCriarAlugueis())
 
 	def test_tudo(self):
@@ -41,5 +41,5 @@ class TestFuncionario(unittest.TestCase):
 		funcionario.permissoes = 7
 		self.assertTrue(funcionario.podeAlterarFuncionarios())
 		self.assertTrue(funcionario.podeAlterarCarros())
-		self.assertTrue(funcionario.podeCriarClientes())
+		self.assertTrue(funcionario.podeAlterarClientes())
 		self.assertTrue(funcionario.podeCriarAlugueis())

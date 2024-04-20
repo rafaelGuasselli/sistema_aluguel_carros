@@ -6,6 +6,7 @@ from model.cliente import Cliente
 from model.carro_service import CarroService
 from model.cliente_service import ClienteService
 from model.aluguel_service import AluguelService
+from model.funcionario_service import FuncionarioService
 
 
 class TestAluguelService(unittest.TestCase):
@@ -14,8 +15,14 @@ class TestAluguelService(unittest.TestCase):
 		self.carroService = CarroService()
 		self.clienteService = ClienteService()
 		self.aluguelService = AluguelService()
+		self.funcionarioService = FuncionarioService()
+
+	def login(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("435.402.600-72", "admin")
 
 	def test_aluguel_aceito(self):
+		self.login()
 		carro = Carro()
 		cliente = Cliente()
 		carro.placa = self.criarStringAleatoria(7)
@@ -28,6 +35,7 @@ class TestAluguelService(unittest.TestCase):
 		self.assertEqual(carro.cliente_id, cliente.id)
 	
 	def test_aluguel_rejeitado(self):
+		self.login()
 		carro = Carro()
 		cliente1 = Cliente()
 		cliente2 = Cliente()
@@ -46,6 +54,7 @@ class TestAluguelService(unittest.TestCase):
 			self.assertTrue(True)
 
 	def test_aluguel_carro_nao_existe(self):
+		self.login()
 		carro = Carro()
 		cliente = Cliente()
 		
@@ -56,6 +65,7 @@ class TestAluguelService(unittest.TestCase):
 			self.assertTrue(True)
 
 	def test_pagar(self):
+		self.login()
 		carro = Carro()
 		cliente = Cliente()
 
@@ -70,6 +80,7 @@ class TestAluguelService(unittest.TestCase):
 		self.assertEqual(carro.cliente_id, cliente.id)
 
 	def test_pagar_carro_nao_existe(self):
+		self.login()
 		carro = Carro()
 		cliente = Cliente()
 		carro.id = -1
