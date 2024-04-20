@@ -1,7 +1,6 @@
 from model.funcionario import Funcionario
 from model.carro_mapper import CarroMapper
 from model.cache_mapper import CacheMapper
-from model.funcionario_mapper import FuncionarioMapper
 
 class CarroService:
 	def __init__(self):
