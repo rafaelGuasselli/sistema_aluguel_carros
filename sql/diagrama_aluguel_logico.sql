@@ -31,7 +31,7 @@ CREATE TABLE Funcionarios (
 );
 
 CREATE TABLE Cache(
-	id INTEGER PRIMARY KEY CHECK (id = 0),
+	id INTEGER PRIMARY KEY CHECK (id = 1),
 	funcionario_atual INTEGER NULL,
 	FOREIGN KEY (funcionario_atual) REFERENCES Funcionarios(id)
 );
@@ -47,6 +47,8 @@ INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 	'435.402.600-72',
 	7
 );
+
+INSERT INTO Cache(funcionario_atual) VALUES(1);
 
 --001 = 1 é o nivel dos atendentes.
 INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
