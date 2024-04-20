@@ -13,36 +13,19 @@ class JanelaCarros(Tk.Tk):
         self.permissions = "111"
         self.columns = [0,2,4]
         self.__create_gidgets()
-        self.bind("<MouseWheel>", self.lista._on_mousewheel)
-        self.bind("<Button-4>", self.lista._on_mousewheel)
-        self.bind("<Button-5>", self.lista._on_mousewheel)
+        self.bind("<MouseWheel>", self._on_mousewheel)
+        self.bind("<Button-4>", self._on_mousewheel)
+        self.bind("<Button-5>", self._on_mousewheel)
+
         self.mainloop()
 
+    def _on_mousewheel(self, event):
+        print(event)
 
     def __create_gidgets(self):
-        superior = Tk.Frame(self, highlightbackground="blue", highlightthickness=1)
-        if (self.permissions[2] == '1'):
-            Tk.Button(superior, text="Gerenciar usuários", command=self.__click_gerenciar_usuarios_event).pack(side="right", padx=(0,20), pady=10)
-        
-        if (self.permissions[1] == '1'):
-            Tk.Button(superior, text="Adicionar carros", command=self.__click_adicionar_carros_event).pack(side="right", padx=(0,20), pady=10)
-        
-        Tk.Label(superior, text="Veículos", font=("Arial", 18, "bold")).pack(side="left", padx=(10,0))
-        
-        # Cria o container para a listagem de carros
         central = Tk.Frame(self)
-
-        # Cria a lista de carros
-        self.lista = Lista(central)
-        self.containerList = Tk.Frame(self.lista.interior)
-        self.__create_cars(self.containerList)
-        self.containerList.pack(fill="x", expand="true")
-        self.lista.pack(fill=Tk.BOTH)
-
-
-        # Renderiza central e superior
         central.grid(sticky="WE",row=1, column=0)
-        superior.grid(row=0, sticky="NSWE")
+        central.bind("<MouseWheel>", self._on_mousewheel)
     
     # A partir de informacoes varios elementos carros
     def __create_cars(self, containerList):
