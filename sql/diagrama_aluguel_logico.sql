@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS Clientes;
 DROP TABLE IF EXISTS Carros;
 DROP TABLE IF EXISTS Funcionarios;
+DROP TABLE IF EXISTS Cache;
 
 CREATE TABLE Clientes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,6 +28,12 @@ CREATE TABLE Funcionarios (
     nome VARCHAR(50),
     permissoes INTEGER,
 	hash_senha VARCHAR(128)
+);
+
+CREATE TABLE Cache(
+	id INTEGER PRIMARY KEY CHECK (id = 0),
+	funcionario_atual INTEGER NULL,
+	FOREIGN KEY (funcionario_atual) REFERENCES Funcionarios(id)
 );
  
 --Permissões são um binario de 3 digitos 000
