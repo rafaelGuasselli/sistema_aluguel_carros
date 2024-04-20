@@ -1,7 +1,7 @@
 import tkinter as Tk
 from view.Lista import Lista
 from view.JanelaCriarCarro import JanelaCriarCarro
-from view.VerticalScrolledFrame import VerticalScrolledFrame
+from view.JanelaUsuarios import JanelaUsuarios
 from PIL import Image, ImageTk
 
 class JanelaCarros(Tk.Tk):
@@ -46,7 +46,7 @@ class JanelaCarros(Tk.Tk):
     # A partir de informacoes varios elementos carros
     def __create_cars(self, containerList):
         row = 0
-        for i in range(100):
+        for i in range(21):
             containerCarro = Tk.Frame(containerList)
             containerCarro.columnconfigure(tuple(range(10)), weight=1)
             containerCarro.rowconfigure((0,2,3), weight=1)
@@ -92,6 +92,6 @@ class JanelaCarros(Tk.Tk):
         JanelaCriarCarro(self)
     
     def __click_gerenciar_usuarios_event(self):
-        print("clicado")
+        JanelaUsuarios(self)
 
 
