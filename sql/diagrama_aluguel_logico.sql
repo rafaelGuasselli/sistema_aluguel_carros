@@ -52,10 +52,24 @@ INSERT INTO Cache(funcionario_atual) VALUES(1);
 
 --011 = 3 é o nivel dos atendentes.
 INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
-	'Rafael', 
+	'Teste cliente e carros', 
 	'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 
 	'366.667.700-21',
+	3
+);
+
+INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
+	'Teste só cliente', 
+	'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 
+	'366.667.700-20',
 	1
+);
+
+INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
+	'Teste sem nenhuma permissão', 
+	'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 
+	'366.667.700-19',
+	0
 );
 
 --Multas são aplicadas caso o carro seja devolvido 1 hora após o esperado.
