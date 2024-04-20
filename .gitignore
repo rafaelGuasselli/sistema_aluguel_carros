@@ -1,3 +1,5 @@
+venv
+view/__pycache__
 *.db
 __pycache__
 temp
