@@ -7,12 +7,6 @@ class JanelaLogin(Tk.Tk):
         self.geometry("800x600")
 
         # Configuracao de grid
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=8)
-        self.rowconfigure(2, weight=1)
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=8)
-        self.columnconfigure(2, weight=1)
     
         self.__create_gidgets()
 
@@ -38,16 +32,12 @@ class JanelaLogin(Tk.Tk):
         passwordEntry.grid(column=1, row=1, sticky="ew")
 
         # Botao de login
-        Tk.Button(dataFrame, text="Login", font=("Arial", 14), command=self.__click_button_event).grid(row=2, columnspan=2, pady=(10,0))
+        Tk.Button(dataFrame, text="Login", font=("Arial", 14), command=self.__click_button_login_event).grid(row=2, columnspan=2, pady=(10,0))
 
-        dataFrame.grid(column=1, row=1)
+        dataFrame.place(in_=self, anchor='center', relx=.5, rely=.5)
 
     # Evento para que quando o botao de login seja clicado
-    def __click_button_event(self):
+    def __click_button_login_event(self):
         print({"email": self.email["get"](), "password": self.password["get"]()})
         self.email["erase"](0, 'end')
-
-
-
-
-
+    
