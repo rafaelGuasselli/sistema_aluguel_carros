@@ -1,9 +1,11 @@
+from model.cache_mapper import CacheMapper
 from model.funcionario_mapper import FuncionarioMapper
 import hashlib, uuid
 
 class FuncionarioService:
 	def __init__(self):
 		self.funcionarioMapper = FuncionarioMapper()
+		self.cacheMapper = CacheMapper()
 	
 	def login(self, cpf, senha):
 		try:
@@ -14,6 +16,9 @@ class FuncionarioService:
 			raise Exception(mensagem)
 
 	def __login(self, cpf, senha):
+		if self.cacheMapper.listar() != None:
+			raise Exception("Você já está logado!")
+
 		salt = uuid.uuid4().hex
 		senha_hash = hashlib.sha512(bytes(senha, 'utf-8')).hexdigest()
 		funcionario = self.funcionarioMapper.listarCpfSenha(cpf, senha_hash)
@@ -21,7 +26,19 @@ class FuncionarioService:
 		if funcionario is None:
 			raise Exception("Usuário ou senha incorretos!")
 
+		self.cacheMapper.criar(funcionario=funcionario)
 		return funcionario
+
+	def logout(self):
+		try:
+			return self.__logout()
+		except Exception as error:
+			detalhes = str(error)
+			mensagem = "Falha ao deslogar!\n{}".format(detalhes)
+			raise Exception(mensagem)
+	
+	def __logout(self):
+		self.cacheMapper.deletar()
 
 	def criar(self, funcionario):
 		funcionario.senha = hashlib.sha512(bytes(funcionario.senha, 'utf-8')).hexdigest()

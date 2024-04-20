@@ -10,10 +10,22 @@ class TestFuncionarioService(unittest.TestCase):
 		self.funcionarioService = FuncionarioService()
 
 	def test_login_aceito(self):
+		self.funcionarioService.logout()
 		self.funcionarioService.login("435.402.600-72", "admin")
 
 	def test_login_rejeitado(self):
+		self.funcionarioService.logout()
 		self.assertRaises(Exception, lambda: self.funcionarioService.login("435.402.600-72", ""))
+	
+	def test_login_ja_logado(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("435.402.600-72", "admin")
+		self.assertRaises(Exception, lambda:self.funcionarioService.login("435.402.600-72", "admin"))
+
+	def test_logout(self):
+		self.test_login_aceito()
+		self.funcionarioService.logout()
+		self.funcionarioService.logout()
 
 	def test_criar(self):
 		funcionario = Funcionario()
