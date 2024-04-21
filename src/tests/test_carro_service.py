@@ -1,9 +1,9 @@
 import random
 import string
 import unittest
-from model.carro import Carro
-from model.carro_service import CarroService
-from model.funcionario_service import FuncionarioService
+from src.model.carro import Carro
+from src.model.carro_service import CarroService
+from src.model.funcionario_service import FuncionarioService
 
 
 class TestCarroService(unittest.TestCase):

@@ -1,12 +1,12 @@
 import unittest
 import random
 import string
-from model.carro import Carro
-from model.cliente import Cliente
-from model.carro_service import CarroService
-from model.cliente_service import ClienteService
-from model.aluguel_service import AluguelService
-from model.funcionario_service import FuncionarioService
+from src.model.carro import Carro
+from src.model.cliente import Cliente
+from src.model.carro_service import CarroService
+from src.model.cliente_service import ClienteService
+from src.model.aluguel_service import AluguelService
+from src.model.funcionario_service import FuncionarioService
 
 
 class TestAluguelService(unittest.TestCase):

@@ -1,6 +1,6 @@
-from model.cliente_mapper import ClienteMapper
-from model.cache_mapper import CacheMapper
-from model.funcionario import Funcionario
+from .cliente_mapper import ClienteMapper
+from .cache_mapper import CacheMapper
+from .funcionario import Funcionario
 
 class ClienteService:
 	def __init__(self):

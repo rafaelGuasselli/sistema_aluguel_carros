@@ -1,8 +1,8 @@
 import random
 import string
 import unittest
-from model.carro import Carro
-from model.carro_mapper import CarroMapper
+from src.model.carro import Carro
+from src.model.carro_mapper import CarroMapper
 
 class TestCarroMapper(unittest.TestCase):
 	def __init__(self, *args, **kwargs):

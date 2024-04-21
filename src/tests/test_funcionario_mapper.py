@@ -1,8 +1,8 @@
 import unittest
 import random
 import string
-from model.funcionario import Funcionario
-from model.funcionario_mapper import FuncionarioMapper
+from src.model.funcionario import Funcionario
+from src.model.funcionario_mapper import FuncionarioMapper
 
 class TestFuncionarioMapper(unittest.TestCase):
 	def __init__(self, *args, **kwargs):

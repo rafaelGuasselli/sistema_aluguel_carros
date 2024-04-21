@@ -1,6 +1,6 @@
-from model.funcionario import Funcionario
-from model.carro_mapper import CarroMapper
-from model.cache_mapper import CacheMapper
+from .funcionario import Funcionario
+from .carro_mapper import CarroMapper
+from .cache_mapper import CacheMapper
 
 class CarroService:
 	def __init__(self):

@@ -1,8 +1,8 @@
 import random
 import string
 import unittest
-from model.funcionario import Funcionario
-from model.funcionario_service import FuncionarioService
+from src.model.funcionario import Funcionario
+from src.model.funcionario_service import FuncionarioService
 
 class TestFuncionarioService(unittest.TestCase):
 	def __init__(self, *args, **kwargs):

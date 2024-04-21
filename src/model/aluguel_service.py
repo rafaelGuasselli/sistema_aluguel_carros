@@ -1,5 +1,5 @@
-from model.carro_service import CarroService
-from model.cliente_service import ClienteService
+from .carro_service import CarroService
+from .cliente_service import ClienteService
 
 class AluguelService:
 	def __init__(self):

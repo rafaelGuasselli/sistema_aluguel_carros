@@ -1,5 +1,5 @@
 import unittest
-from model.funcionario import Funcionario
+from src.model.funcionario import Funcionario
 
 class TestFuncionario(unittest.TestCase):
 	def __init__(self, *args, **kwargs):

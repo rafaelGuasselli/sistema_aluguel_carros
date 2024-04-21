@@ -1,7 +1,7 @@
 import hashlib, uuid
-from model.funcionario import Funcionario
-from model.cache_mapper import CacheMapper
-from model.funcionario_mapper import FuncionarioMapper
+from .funcionario import Funcionario
+from .cache_mapper import CacheMapper
+from .funcionario_mapper import FuncionarioMapper
 
 
 class FuncionarioService:
@@ -41,6 +41,12 @@ class FuncionarioService:
 	
 	def __logout(self):
 		self.cacheMapper.deletar()
+
+	def estaLogado(self):
+		return self.cacheMapper.listar() != None
+
+	def usuarioAtual(self):
+		return self.cacheMapper.listar()
 
 	def criar(self, funcionario):
 		try:

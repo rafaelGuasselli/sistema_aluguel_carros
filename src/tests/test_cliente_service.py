@@ -1,9 +1,9 @@
 import random
 import string
 import unittest
-from model.cliente import Cliente
-from model.cliente_service import ClienteService
-from model.funcionario_service import FuncionarioService
+from src.model.cliente import Cliente
+from src.model.cliente_service import ClienteService
+from src.model.funcionario_service import FuncionarioService
 
 class TestClienteService(unittest.TestCase):
 	def __init__(self, *args, **kwargs):

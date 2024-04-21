@@ -1,9 +1,9 @@
 import random
 import string
 import unittest
-from model.funcionario import Funcionario
-from model.cache_mapper import CacheMapper
-from model.funcionario_service import FuncionarioService
+from src.model.funcionario import Funcionario
+from src.model.cache_mapper import CacheMapper
+from src.model.funcionario_service import FuncionarioService
 
 class TestCarroMapper(unittest.TestCase):
 	def __init__(self, *args, **kwargs):

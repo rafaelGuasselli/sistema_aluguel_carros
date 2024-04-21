@@ -1,8 +1,8 @@
 import random
 import string
 import unittest
-from model.cliente import Cliente
-from model.cliente_mapper import ClienteMapper
+from src.model.cliente import Cliente
+from src.model.cliente_mapper import ClienteMapper
 
 class TestClienteMapper(unittest.TestCase):
 	def __init__(self, *args, **kwargs):
