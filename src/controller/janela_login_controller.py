@@ -2,7 +2,7 @@ class JanelaLoginController:
 	def __init__(self, gerenciador, view):
 		self.view = view
 		self.gerenciador = gerenciador
-		self.funcionarioService = self.gerenciador.funcionarioSerivce
+		self.funcionarioService = self.gerenciador.funcionarioService
 		
 	def login(self):
 		try:
@@ -15,7 +15,7 @@ class JanelaLoginController:
 	def __login(self):
 		cpf = self.view.getCPF()
 		senha = self.view.getSenha()
-		self.funcionarioSerivce.login(cpf, senha)
+		self.funcionarioService.login(cpf, senha)
 
-	def fecharJanela():
+	def fecharJanela(self):
 		self.destroy()		

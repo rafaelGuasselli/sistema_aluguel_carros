@@ -2,7 +2,7 @@ class JanelaCarroController:
 	def __init__(self, gerenciador, view):
 		self.view = view
 		self.gerenciador = gerenciador
-		self.funcionarioService = self.gerenciador.funcionarioSerivce
+		self.funcionarioService = self.gerenciador.funcionarioService
 		
 	def login(self):
 		try:
@@ -15,7 +15,14 @@ class JanelaCarroController:
 	def __login(self):
 		cpf = self.view.getCPF()
 		senha = self.view.getSenha()
-		self.funcionarioSerivce.login(cpf, senha)
+		self.funcionarioService.login(cpf, senha)
+	
 
-	def fecharJanela():
-		self.destroy()		
+	def telaLogin(self):
+		try:
+			self.gerenciador.criarJanelaLogin()
+		except Exception as erro:
+			self.gerenciador.criarJanelaErro(str(erro))
+
+	def fecharJanela(self):
+		self.view.destroy()		

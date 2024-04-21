@@ -16,7 +16,6 @@ class JanelaCarros(Tk.Tk):
 		self.geometry("800x600")
 		self.rowconfigure(1, weight=10)
 		self.columnconfigure(0, weight=1)
-		self.columns = [0,2,4] # Alugar, editar carros, editar usuários 
 
 		self.__adicionarSuperior(gerenciarUsuarios=gerenciarUsuarios, adicionarCarros=adicionarCarros)
 		self.__adicionarListaDeCarros(
@@ -31,13 +30,25 @@ class JanelaCarros(Tk.Tk):
 		self.lista.criarLista(self.controller, listaCarros, alugar, editar, remover)
 		self.lista.grid(sticky="WE", row=1, column=0)
 
+	def __adicionarBotaoLogin(self, container):
+		self.botaoLogin = Tk.Button(container, text="Login", command=self.controller.telaLogin)
+		self.botaoLogin.pack(side="right", padx=(0,20), pady=10)
+
+	def __adicionarBotaoLogout(self, container):
+		self.botaoLogout = Tk.Button(container, text="Logout")
+		self.botaoLogout.pack(side="right", padx=(0,20), pady=10)
+
 	def __adicionarSuperior(self, gerenciarUsuarios=False, adicionarCarros=False):
 		self.superior = Tk.Frame(self)
 		self.superior.grid(row=0, sticky="NSWE")
 
 		self.__adicionarLabelVeiculos(self.superior)
+		self.__adicionarBotaoLogout(self.superior)
+		self.__adicionarBotaoLogin(self.superior)
+
 		if adicionarCarros: self.__adicionarBotaoAdicionarCarros(self.superior)
 		if gerenciarUsuarios: self.__adicionarBotaoGerenciarUsuario(self.superior)
+
 
 	def __adicionarBotaoGerenciarUsuario(self, container):
 		self.botaoGerenciarUsuarios = Tk.Button(container, text="Gerenciar usuários")
