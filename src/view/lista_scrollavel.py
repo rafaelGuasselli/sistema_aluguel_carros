@@ -2,8 +2,8 @@ import tkinter as Tk
 from view.container_scrollavel import ContainerScrollavel
 
 class ListaScrollavel(ContainerScrollavel):
-	def __init__(self, parent):
-		super().__init__(parent)
+	def __init__(self, parent, *args, **kw):
+		super().__init__(parent, *args, **kw)
 
 	def criarLista(self, controller, lista=[], alugar=False, editar=False, remover=False):
 		self.controller = controller
@@ -22,8 +22,8 @@ class ListaScrollavel(ContainerScrollavel):
 		containerCarro = Tk.Frame(self.container)
 		containerCarro.columnconfigure(0, weight=3)
 		containerCarro.columnconfigure(1, weight=2)
+		
 		containerCarro.pack(expand=True, fill='both', pady=(0,10), padx=10)
-		containerCarro.config(background="green")
 
 		label = Tk.Label(containerCarro, text=texto, justify="left")
 		label.grid(column=0, row=0, sticky="W")

@@ -19,7 +19,7 @@ class GerenciadorJanelas:
 		JanelaLogin(self)
 	
 	def criarJanelaCarros(self):
-		JanelaCarros(self, listaCarros=["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"], alugarCarros=True, adicionarCarros=True, gerenciarUsuarios=True)
+		JanelaCarros(self, listaCarros=["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"], alugarCarros=True, adicionarCarros=True, gerenciarUsuarios=True)
 
 	def criarJanelaErro(self, mensagem):
 		JanelaErro(mensagem)

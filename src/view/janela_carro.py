@@ -30,7 +30,6 @@ class JanelaCarros(Tk.Tk):
 		self.lista = ListaScrollavel(self)
 		self.lista.criarLista(self.controller, listaCarros, alugar, editar, remover)
 		self.lista.grid(sticky="WE", row=1, column=0)
-		self.config(background="purple")
 
 	def __adicionarSuperior(self, gerenciarUsuarios=False, adicionarCarros=False):
 		self.superior = Tk.Frame(self)
