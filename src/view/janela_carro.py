@@ -1,4 +1,5 @@
 import tkinter as Tk
+from tkinter import ttk
 from tkinter.constants import *
 from view.lista_scrollavel import ListaScrollavel
 from controller.janela_carro_controller import JanelaCarroController
@@ -15,10 +16,11 @@ class JanelaCarros(Tk.Tk):
 		self.__removerTodosOsElementosDaJanela()
 		self.title("Janela Carro")
 		self.geometry("800x600")
-		self.rowconfigure(1, weight=10)
+		self.rowconfigure(2, weight=10)
 		self.columnconfigure(0, weight=1)
 
 		self.__adicionarSuperior(gerenciarUsuarios=gerenciarUsuarios, adicionarCarros=adicionarCarros)
+		self.__criaSeparadorSuperiorCentral()
 		self.__adicionarListaDeCarros(
 			listaCarros=listaCarros,
 			editar=editarCarros, 
@@ -26,10 +28,14 @@ class JanelaCarros(Tk.Tk):
 			remover=removerCarros
 		)
 
+
+	def __criaSeparadorSuperiorCentral(self):
+		ttk.Separator(self, orient="horizontal").grid(sticky="WE", column=0, row=1)
+
 	def __adicionarListaDeCarros(self, listaCarros=[], editar=False, alugar=False, remover=False):
 		self.lista = ListaScrollavel(self)
 		self.lista.criarLista(self.controller, listaCarros, alugar, editar, remover)
-		self.lista.grid(sticky="WE", row=1, column=0)
+		self.lista.grid(sticky="WE", row=2, column=0)
 
 	def __adicionarBotaoLogin(self, container):
 		self.botaoLogin = Tk.Button(container, text="Login", command=self.controller.telaLogin)
