@@ -16,14 +16,14 @@ class GerenciadorJanelas():
 	def __init__(self):
 		self.carroService = CarroService()
 		self.aluguelService = AluguelService()
-		self.funcionarioSerivce = FuncionarioService()	
-		atexit.register(self.funcionarioSerivce.logout)
+		self.funcionarioService = FuncionarioService()	
+		atexit.register(self.funcionarioService.logout)
 
 		self.criarJanelaCarros()
 
 	def criarJanelaCarros(self):
 		carros = self.carroService.listar()
-		funcionarioAtual = self.funcionarioSerivce.usuarioAtual() or Funcionario()
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
 		JanelaCarros(self, 
 			listaCarros=carros, 
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 

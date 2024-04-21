@@ -5,7 +5,7 @@ class JanelaCarroController:
 		self.funcionarioService = self.gerenciador.funcionarioService
 		
 	def login(self):
-		self.funcionarioService = self.gerenciador.funcionarioSerivce
+		self.funcionarioService = self.gerenciador.funcionarioService
 	
 	def alugar(carro):
 		try:
