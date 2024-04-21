@@ -24,7 +24,19 @@ class GerenciadorJanelas():
 	def criarJanelaCarros(self):
 		carros = self.carroService.listar()
 		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
-		JanelaCarros(self, 
+		self.root = JanelaCarros(self, 
+			listaCarros=carros, 
+			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
+			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
+			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios()
+		)
+
+		self.root.mainloop()
+
+	def atualizarJanelaCarros(self):
+		carros = self.carroService.listar()
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		self.root.inicializar(
 			listaCarros=carros, 
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 

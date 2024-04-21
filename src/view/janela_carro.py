@@ -10,7 +10,6 @@ class JanelaCarros(Tk.Tk):
 		self.gerenciador = gerenciador
 		self.controller = JanelaCarroController(gerenciador, self)
 		self.inicializar(listaCarros, gerenciarUsuarios, adicionarCarros, editarCarros, alugarCarros, removerCarros)
-		self.mainloop()
 
 	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False):
 		self.__removerTodosOsElementosDaJanela()
@@ -42,7 +41,7 @@ class JanelaCarros(Tk.Tk):
 		self.botaoLogin.pack(side="right", padx=(0,20), pady=10)
 
 	def __adicionarBotaoLogout(self, container):
-		self.botaoLogout = Tk.Button(container, text="Logout")
+		self.botaoLogout = Tk.Button(container, text="Logout", command=self.controller.logout)
 		self.botaoLogout.pack(side="right", padx=(0,20), pady=10)
 
 	def __adicionarSuperior(self, gerenciarUsuarios=False, adicionarCarros=False):

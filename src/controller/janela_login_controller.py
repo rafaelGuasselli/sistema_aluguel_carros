@@ -7,7 +7,7 @@ class JanelaLoginController:
 	def login(self):
 		try:
 			self.__login()
-			self.gerenciador.criarJanelaCarros()
+			self.gerenciador.atualizarJanelaCarros()
 			self.fecharJanela()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
@@ -18,4 +18,4 @@ class JanelaLoginController:
 		self.funcionarioService.login(cpf, senha)
 
 	def fecharJanela(self):
-		self.view.destroy()	
+		self.view.destroy()
