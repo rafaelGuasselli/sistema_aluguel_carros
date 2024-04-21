@@ -6,13 +6,6 @@ class JanelaCriarCarro(Tk.Toplevel):
 
         self.geometry("300x300")
 
-        # Bloqueia o redimensionamento da tela
-        self.resizable(False, False)
-        # Bloqueia interacao com qualquer outra tela enquanto esta estiver ativa
-        self.grab_set()
-        # Sempre afrente da janela carros
-        self.transient(master)
-
         self.columnconfigure(0, minsize=50, weight=1)
         self.columnconfigure(1, weight=3)
 

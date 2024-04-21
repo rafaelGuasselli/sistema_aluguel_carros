@@ -3,11 +3,8 @@ from tkinter import ttk
 from view.lista import Lista
 
 class JanelaUsuarios(Tk.Toplevel):
-# class JanelaUsuarios(Tk.Tk):
     def __init__(self, master) -> None:
-    # def __init__(self):
         super().__init__(master)
-        # super().__init__()
         self.geometry("500x700")
         self.addUser = Tk.Frame(self)
         Tk.Button(self.addUser, text="Adicionar usuário", command=self.__click_adicionar_usuario_event).pack(pady=10)
