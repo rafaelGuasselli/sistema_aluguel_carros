@@ -14,3 +14,6 @@ class Funcionario:
 
 	def podeAlterarClientes(self):
 		return (self.permissoes & 1<<0) > 0
+
+	def __str__(self):
+		return "CPF: {}, Nome: {}, Permissões: {}".format(self.cpf, self.nome, self.permissoes)
