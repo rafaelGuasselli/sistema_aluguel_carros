@@ -18,4 +18,4 @@ class JanelaLoginController:
 		self.funcionarioService.login(cpf, senha)
 
 	def fecharJanela(self):
-		self.destroy()		
+		self.view.destroy()	

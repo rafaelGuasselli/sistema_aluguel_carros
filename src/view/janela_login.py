@@ -1,13 +1,12 @@
 import tkinter as Tk
 from controller.janela_login_controller import JanelaLoginController
 
-class JanelaLogin(Tk.Tk):
+class JanelaLogin(Tk.Toplevel):
 	def __init__(self, gerenciador):
 		super().__init__()
 		self.gerenciador = gerenciador
 		self.controller = JanelaLoginController(gerenciador, self)
 		self.inicializar()
-		self.mainloop()
 	
 	def inicializar(self):
 		self.__removerTodosOsElementosDaJanela()
@@ -23,10 +22,10 @@ class JanelaLogin(Tk.Tk):
 		self.__adicionarBotaoDeLogin(self.container, self.controller.login)
 
 	def getCPF(self):
-		return self.inputCPF.inputCPF.get()
+		return self.inputCPF.get()
 
 	def getSenha(self):
-		return self.inputCPF.inputSenha.get()
+		return self.inputSenha.get()
 
 	def __adicionarInputDoCpf(self, container):
 		self.labelCPF = Tk.Label(container, text="CPF: ", font=("Arial", 16, "bold"), justify="left").grid(sticky="W",column=0, row=0)

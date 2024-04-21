@@ -3,7 +3,7 @@ from tkinter.constants import *
 
 class ContainerScrollavel(tk.Frame):
 	def __init__(self, parent, *args, **kw):
-		super().__init__()
+		tk.Frame.__init__(self, parent, *args, **kw)
 		self.inicializar(parent, *args, **kw)
 
 	def inicializar(self, parent):

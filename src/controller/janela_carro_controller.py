@@ -5,12 +5,16 @@ class JanelaCarroController:
 		self.funcionarioService = self.gerenciador.funcionarioService
 		
 	def login(self):
+		self.funcionarioService = self.gerenciador.funcionarioSerivce
+	
+	def alugar(carro):
 		try:
-			self.__login()
-			self.gerenciador.criarJanelaCarros()
-			self.fecharJanela()
+			self.gerenciador.criarJanelaAlugarCarro()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
+	
+	def editar(carro):
+		pass
 
 	def __login(self):
 		cpf = self.view.getCPF()
@@ -26,3 +30,5 @@ class JanelaCarroController:
 
 	def fecharJanela(self):
 		self.view.destroy()		
+	def remover(carro):
+		pass

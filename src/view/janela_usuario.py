@@ -16,7 +16,6 @@ class JanelaUsuarios(Tk.Toplevel):
         self.__create_gidgets()
         self.containerContent.pack(padx=5, pady=5, fill=Tk.BOTH)
         self.list.pack(expand=True, fill=Tk.BOTH)
-        self.mainloop()
     
 
     def __create_gidgets(self):

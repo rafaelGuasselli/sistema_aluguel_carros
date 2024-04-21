@@ -10,7 +10,6 @@ class JanelaCriarCarro(Tk.Toplevel):
         self.columnconfigure(1, weight=3)
 
         self.__create_gidgets()
-        self.mainloop()
 
     def __create_gidgets(self):
         # Placa

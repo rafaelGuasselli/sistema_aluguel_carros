@@ -13,6 +13,7 @@ class JanelaCarros(Tk.Tk):
 
 	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False):
 		self.__removerTodosOsElementosDaJanela()
+		self.title("Janela Carro")
 		self.geometry("800x600")
 		self.rowconfigure(1, weight=10)
 		self.columnconfigure(0, weight=1)

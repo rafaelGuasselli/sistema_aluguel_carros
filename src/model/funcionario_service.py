@@ -18,9 +18,7 @@ class FuncionarioService:
 			raise Exception(mensagem)
 
 	def __login(self, cpf, senha):
-		if self.cacheMapper.listar() != None:
-			raise Exception("Você já está logado!")
-
+		self.logout()
 		#salt = uuid.uuid4().hex
 		#TODO: Adicionar salt se tiver tempo.
 		senha_hash = hashlib.sha512(bytes(senha, 'utf-8')).hexdigest()
