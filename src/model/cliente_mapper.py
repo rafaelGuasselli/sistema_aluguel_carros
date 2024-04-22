@@ -13,7 +13,7 @@ class ClienteMapper(SqlMapper):
 	def atualizar(self, cliente):
 		sql = "UPDATE Clientes SET cpf = ?, nome = ? WHERE id = ?;"
 		values = (cliente.cpf, cliente.nome, cliente.id)
-		return super()._update(sql, values)
+		super()._update(sql, values)
 		
 	def listar(self):
 		sql = "SELECT id, cpf, nome FROM Clientes;"

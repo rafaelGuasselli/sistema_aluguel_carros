@@ -13,7 +13,7 @@ class CarroMapper(SqlMapper):
 	def atualizar(self, carro):
 		sql = "UPDATE Carros SET cor = ?, taxa_hora = ?, placa = ?, modelo = ?, taxa_dia = ?, cliente_id = ?, data_aluguel = ? WHERE id = ?;"
 		values = (carro.cor, carro.taxa_hora, carro.placa, carro.modelo, carro.taxa_dia, carro.cliente_id, carro.data_aluguel, carro.id)
-		return super()._update(sql, values)
+		super()._update(sql, values)
 		
 	def listar(self):
 		sql = "SELECT id, cor, taxa_hora, placa, modelo, taxa_dia, cliente_id, data_aluguel FROM Carros;"

@@ -13,7 +13,7 @@ class FuncionarioMapper(SqlMapper):
 	def atualizar(self, funcionario):
 		sql = "UPDATE Funcionarios SET nome = ?, permissoes = ? WHERE id = ?;"
 		values = (funcionario.nome, funcionario.permissoes, funcionario.id)
-		return super()._update(sql, values)
+		super()._update(sql, values)
 		
 	def listar(self):
 		sql = "SELECT id, nome, permissoes FROM Funcionarios;"
