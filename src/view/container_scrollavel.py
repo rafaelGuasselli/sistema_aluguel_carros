@@ -13,7 +13,7 @@ class ContainerScrollavel(tk.Frame):
 		self.canvas = tk.Canvas(self, bd=0, highlightthickness=0, height=1000, yscrollcommand=self.scrollbar.set)
 		self.canvas.pack(side=LEFT, fill=BOTH, expand=TRUE)
 		self.scrollbar.pack(fill=Y, side=RIGHT, expand=FALSE)
-		self.scrollbar.config(command=self.canvas.yview)
+		self.scrollbar.config()
 
 		self.canvas.xview_moveto(0)
 		self.canvas.yview_moveto(0)

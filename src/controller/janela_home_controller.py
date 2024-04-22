@@ -42,9 +42,16 @@ class JanelaHomeController:
 	
 	def alugar(self,carro):
 		try:
-			self.gerenciador.criarJanelaAlugarCarro(carro)
+			self.__alugar(carro)
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
+
+	def __alugar(self, carro):
+		carro = self.carroService.listar(carro=carro)
+		if carro and carro.estaAlugado():
+			raise Exception("Carro já está alugado!")
+
+		self.gerenciador.criarJanelaAlugarCarro(carro)
 
 	def editar(self, carro):
 		try:

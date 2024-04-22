@@ -27,7 +27,7 @@ class AluguelService:
 		else:
 			self.clienteService.atualizar(cliente=cliente)
 
-		if carro.cliente_id != None:
+		if carro and carro.estaAlugado():
 			raise Exception("Carro já está alugado!")
 
 		cliente = self.clienteService.listar(cpf=cliente.cpf)
