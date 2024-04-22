@@ -14,7 +14,7 @@ class JanelaHomeController:
 
 	def editar(self, carro):
 		try:
-			self.gerenciador.criarJanelaCarro(carro)
+			self.gerenciador.criarJanelaEditarCarro(carro)
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 
@@ -60,7 +60,7 @@ class JanelaHomeController:
 	
 	def telaCarros(self):
 		try:
-			self.gerenciador.criarJanelaCarro()
+			self.gerenciador.criarJanelaEditarCarro()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 	
