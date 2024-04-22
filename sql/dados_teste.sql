@@ -35,7 +35,166 @@ INSERT INTO Funcionarios(nome, hash_senha, permissoes) VALUES (
 INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
 	'Vermelho',
 	50,
-	'OTM 2X22',
+	'OTM-2X22',
+	'Celta',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Prata',
+	100,
+	'RIO-2A18',
+	'Go',
+	2000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Azul',
+	50,
+	'LXG-5389',
+	'Palio',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Amarelo',
+	100,
+	'MEQ-9215',
+	'Fox',
+	2000,
+	Null
+);
+
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Roxo',
+	50,
+	'MEE-3976',
+	'Siena',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Prata',
+	100,
+	'MBY-3048',
+	'Voyage',
+	2000,
+	Null
+);
+
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Preto',
+	50,
+	'MFS-8638',
+	'HB20',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Prata',
+	100,
+	'MHF-5114',
+	'Corsa',
+	2000,
+	Null
+);
+
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'MBA-6596',
+	'Celta',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'LXM-3351',
+	'Celta',
+	1000,
+	Null
+);
+
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'LYI-0718',
+	'Celta',
+	1000,
+	Null
+);
+
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'MDS-1915',
+	'Celta',
+	1000,
+	Null
+);
+
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'MLV-5706',
+	'Celta',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'LXC-2649',
+	'Celta',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'MAY-7631',
+	'Celta',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'MLS-6424',
+	'Celta',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'MFN-4852',
+	'Celta',
+	1000,
+	Null
+);
+
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+	'Vermelho',
+	50,
+	'MDR-4505',
 	'Celta',
 	1000,
 	Null
@@ -49,6 +208,7 @@ INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES
 	2000,
 	Null
 );
+
 
 
 INSERT INTO Clientes(cpf, nome) VALUES (
