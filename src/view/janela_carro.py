@@ -5,16 +5,16 @@ from view.lista_scrollavel import ListaScrollavel
 from controller.janela_carro_controller import JanelaCarroController
 
 class JanelaCarros(Tk.Tk):
-	def __init__(self, gerenciador, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False):
+	def __init__(self, gerenciador, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
 		super().__init__()
+		self.geometry("800x600")
 		self.gerenciador = gerenciador
 		self.controller = JanelaCarroController(gerenciador, self)
-		self.inicializar(listaCarros, gerenciarUsuarios, adicionarCarros, editarCarros, alugarCarros, removerCarros)
+		self.inicializar(listaCarros, gerenciarUsuarios, adicionarCarros, editarCarros, alugarCarros, removerCarros, pagarCarros)
 
-	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False):
+	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
 		self.__removerTodosOsElementosDaJanela()
 		self.title("Janela Carro")
-		self.geometry("800x600")
 		self.rowconfigure(2, weight=10)
 		self.columnconfigure(0, weight=1)
 
@@ -24,16 +24,17 @@ class JanelaCarros(Tk.Tk):
 			listaCarros=listaCarros,
 			editar=editarCarros, 
 			alugar=alugarCarros, 
-			remover=removerCarros
+			remover=removerCarros,
+			pagar=pagarCarros
 		)
 
 
 	def __criaSeparadorSuperiorCentral(self):
 		ttk.Separator(self, orient="horizontal").grid(sticky="WE", column=0, row=1)
 
-	def __adicionarListaDeCarros(self, listaCarros=[], editar=False, alugar=False, remover=False):
+	def __adicionarListaDeCarros(self, listaCarros=[], editar=False, alugar=False, remover=False, pagar=False):
 		self.lista = ListaScrollavel(self)
-		self.lista.criarLista(self.controller, listaCarros, alugar, editar, remover)
+		self.lista.criarLista(self.controller, listaCarros, alugar, editar, remover, pagar)
 		self.lista.grid(sticky="WE", row=2, column=0)
 
 	def __adicionarBotaoLogin(self, container):
