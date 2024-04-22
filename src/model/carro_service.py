@@ -1,12 +1,12 @@
 from .carro import Carro
 from .funcionario import Funcionario
 from .carro_mapper import CarroMapper
-from .cache_mapper import CacheMapper
+from .funcionario_service import FuncionarioService
 
 class CarroService:
 	def __init__(self):
 		self.carroMapper = CarroMapper()
-		self.cacheMapper = CacheMapper()
+		self.funcionarioService = FuncionarioService()
 	
 	def criar(self, carro):
 		try:
@@ -17,8 +17,10 @@ class CarroService:
 			raise Exception(mensagem)
 
 	def __criar(self, carro):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
-		if (funcionarioAtual.podeAlterarCarros() is False):
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		naoTemPermissao = not funcionarioAtual.podeAlterarCarros()
+		naoEstaLogado = not self.funcionarioService.estaLogado()
+		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar carros!")
 		
 		return self.carroMapper.criar(carro)
@@ -33,8 +35,10 @@ class CarroService:
 			raise Exception(mensagem)
 	
 	def __atualizar(self, carro):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
-		if (funcionarioAtual.podeAlterarCarros() is False):
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		naoTemPermissao = not funcionarioAtual.podeAlterarCarros()
+		naoEstaLogado = not self.funcionarioService.estaLogado()
+		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar carros!")
 		return self.carroMapper.atualizar(carro)
 
@@ -65,7 +69,9 @@ class CarroService:
 			raise Exception(mensagem)
 	
 	def __deletar(self, carro):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
-		if (funcionarioAtual.podeAlterarCarros() is False):
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		naoTemPermissao = not funcionarioAtual.podeAlterarCarros()
+		naoEstaLogado = not self.funcionarioService.estaLogado()
+		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar carros!")
 		self.carroMapper.deletar(id=carro.id)

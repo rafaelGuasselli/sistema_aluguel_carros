@@ -3,7 +3,6 @@ from .funcionario import Funcionario
 from .cache_mapper import CacheMapper
 from .funcionario_mapper import FuncionarioMapper
 
-
 class FuncionarioService:
 	def __init__(self):
 		self.funcionarioMapper = FuncionarioMapper()
@@ -49,7 +48,7 @@ class FuncionarioService:
 			raise Exception(mensagem)
 
 	def __criar(self, funcionario):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
+		funcionarioAtual = self.usuarioAtual()
 		if (funcionarioAtual.podeAlterarFuncionarios() is False):
 			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
 
@@ -65,7 +64,7 @@ class FuncionarioService:
 			raise Exception(mensagem)
 
 	def __atualizar(self, funcionario):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
+		funcionarioAtual = self.usuarioAtual()
 		if (funcionarioAtual.podeAlterarFuncionarios() is False):
 			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
 
@@ -98,7 +97,7 @@ class FuncionarioService:
 			raise Exception(mensagem)
 	
 	def __deletar(self, funcionario):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
+		funcionarioAtual = self.usuarioAtual()
 		if (funcionarioAtual.podeAlterarFuncionarios() is False):
 			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
 
@@ -108,4 +107,4 @@ class FuncionarioService:
 		return self.cacheMapper.listar() != None
 
 	def usuarioAtual(self):
-		return self.cacheMapper.listar()
+		return self.cacheMapper.listar() or Funcionario()

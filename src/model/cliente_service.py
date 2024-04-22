@@ -1,12 +1,12 @@
 from .cliente_mapper import ClienteMapper
-from .cache_mapper import CacheMapper
+from .funcionario_service import FuncionarioService
 from .funcionario import Funcionario
 from .cliente import Cliente
 
 class ClienteService:
 	def __init__(self):
 		self.clienteMapper = ClienteMapper()
-		self.cacheMapper = CacheMapper()
+		self.funcionarioService = FuncionarioService()	
 	
 	def criar(self, cliente):
 		try:
@@ -17,8 +17,10 @@ class ClienteService:
 			raise Exception(mensagem)
 	
 	def __criar(self, cliente):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
-		if (funcionarioAtual.podeAlterarClientes() is False):
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		naoTemPermissao = not funcionarioAtual.podeAlterarClientes()
+		naoEstaLogado = not self.funcionarioService.estaLogado()
+		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar clientes!")
 
 		return self.clienteMapper.criar(cliente)
@@ -32,8 +34,10 @@ class ClienteService:
 			raise Exception(mensagem)
 
 	def __atualizar(self, cliente):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
-		if (funcionarioAtual.podeAlterarClientes() is False):
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		naoTemPermissao = not funcionarioAtual.podeAlterarClientes()
+		naoEstaLogado = not self.funcionarioService.estaLogado()
+		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar clientes!")
 		
 		return self.clienteMapper.atualizar(cliente)
@@ -68,7 +72,9 @@ class ClienteService:
 			raise Exception(mensagem)
 
 	def __deletar(self, cliente):
-		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
-		if (funcionarioAtual.podeAlterarClientes() is False):
+		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		naoTemPermissao = not funcionarioAtual.podeAlterarClientes()
+		naoEstaLogado = not self.funcionarioService.estaLogado()
+		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar clientes!")
 		self.clienteMapper.deletar(cliente=cliente)
