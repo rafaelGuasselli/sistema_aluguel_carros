@@ -7,6 +7,7 @@ from view.janela_popup import JanelaPopup
 from view.janela_login import JanelaLogin
 from view.janela_home import JanelaHome
 from view.janela_aluga import JanelaAluga
+from view.janela_criar_carro import JanelaCriarCarro
 from view.janela_editar_carro import JanelaEditarCarro
 
 from model.carro_service import CarroService
@@ -44,6 +45,9 @@ class GerenciadorJanelas():
 
 	def criarJanelaEditarCarro(self, carro=Carro()):
 		JanelaEditarCarro(self, carro)
+
+	def criarJanelaCriarCarro(self):
+		JanelaCriarCarro(self)
 
 	def criarJanelaLogin(self):
 		JanelaLogin(self)

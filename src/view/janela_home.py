@@ -62,7 +62,7 @@ class JanelaHome(Tk.Tk):
 		self.botaoGerenciarUsuarios.pack(side="right", padx=(0,20), pady=10)
 
 	def __adicionarBotaoAdicionarCarros(self, container):
-		self.botaoAdicionarCarros = Tk.Button(container, text="Adicionar carros", command=self.controller.telaCarros)
+		self.botaoAdicionarCarros = Tk.Button(container, text="Adicionar carros", command=self.controller.telaCriarCarros)
 		self.botaoAdicionarCarros.pack(side="right", padx=(0,20), pady=10)
 		
 	def __adicionarLabelVeiculos(self, container):

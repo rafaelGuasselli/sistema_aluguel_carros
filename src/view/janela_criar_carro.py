@@ -1,19 +1,20 @@
 import tkinter as Tk
 
-from controller.janela_editar_carro_controller import JanelaEditarCarroController 
+from controller.janela_criar_carro_controller import JanelaCriarCarroController 
 from view.janela_formulario_carro import JanelaFormularioCarro
 
 class JanelaCriarCarro(JanelaFormularioCarro):
-	def __init__(self, gerenciador, carro):
-		super().__init__(JanelaEditarCarroController(gerenciador, self))
+	def __init__(self, gerenciador):
+		super().__init__(JanelaCriarCarroController(gerenciador, self))
 
-		self.title("Editar carro")
+		self.carro = None
+		self.title("Criar carro")
 		self.resizable(False,False)
 
 		self.inicializar(
-			cor=carro.cor,
-			placa=carro.placa,
-			modelo=carro.modelo,
-			taxaDia=str(carro.taxa_dia) if carro.taxa_dia != None else "",
-			taxaHora=str(carro.taxa_hora) if carro.taxa_hora != None else "",
+			cor="",
+			placa="",
+			modelo="",
+			taxaDia="",
+			taxaHora="",
 		)

@@ -1,7 +1,5 @@
 import tkinter as Tk
 
-from controller.janela_carro_controller import JanelaCarroController 
-
 class JanelaFormularioCarro(Tk.Toplevel):
 	def __init__(self, controller):
 		super().__init__()
@@ -9,13 +7,6 @@ class JanelaFormularioCarro(Tk.Toplevel):
 
 		self.resizable(False,False)
 		self.geometry("400x250")
-		self.inicializar(
-			cor=carro.cor,
-			placa=carro.placa,
-			modelo=carro.modelo,
-			taxaDia=str(carro.taxa_dia) if carro.taxa_dia != None else "",
-			taxaHora=str(carro.taxa_hora) if carro.taxa_hora != None else "",
-		)
 
 	def inicializar(self, placa="", modelo="", taxaHora="", cor="", taxaDia=""):
 		self.__removerTodosOsElementosDaJanela()
@@ -66,7 +57,7 @@ class JanelaFormularioCarro(Tk.Toplevel):
 		self.inputTaxaHora = Tk.Entry(self.container)
 		self.inputTaxaHora.grid(column=1, row=4, sticky="WE", pady=(0,10))
 
-		self.inputTaxaDiaria.insert(0, texto)
+		self.inputTaxaHora.insert(0, texto)
 
 	def __adicionarBotaoFinalizar(self):
 		Tk.Button(self.container, command=self.controller.finalizar, text="Finalizar").grid(column=1, row=5, pady=(0,10))

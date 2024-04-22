@@ -53,14 +53,11 @@ class JanelaHomeController:
 			self.gerenciador.criarJanelaErro(str(erro))
 	
 	def telaUsuarios(self):
-		try:
-			self.gerenciador.criarJanelaLogin()
-		except Exception as erro:
-			self.gerenciador.criarJanelaErro(str(erro))
+		return
 	
-	def telaCarros(self):
+	def telaCriarCarros(self):
 		try:
-			self.gerenciador.criarJanelaEditarCarro()
+			self.gerenciador.criarJanelaCriarCarro()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 	

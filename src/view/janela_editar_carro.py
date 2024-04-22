@@ -7,6 +7,7 @@ class JanelaEditarCarro(JanelaFormularioCarro):
 	def __init__(self, gerenciador, carro):
 		super().__init__(JanelaEditarCarroController(gerenciador, self))
 
+		self.carro = carro
 		self.title("Editar carro")
 		self.resizable(False,False)
 

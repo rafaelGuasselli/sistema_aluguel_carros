@@ -1,4 +1,6 @@
-class JanelaEditarCarroController:
+from model.carro import Carro
+
+class JanelaCriarCarroController:
 	def __init__(self, gerenciador, view):
 		self.view = view
 		self.gerenciador = gerenciador
@@ -12,11 +14,12 @@ class JanelaEditarCarroController:
 			carro.modelo = self.view.getModelo()
 			carro.taxa_hora = int(self.view.getTaxaHora())
 			carro.taxa_dia = int(self.view.getTaxaDiaria())
-			self.carroService.atualizar(carro=carro)
+			self.carroService.criar(carro=carro)
 			self.gerenciador.atualizarJanelaHome()
 			self.fecharJanela()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
+	
 	
 	def fecharJanela(self):
 		self.view.destroy()
