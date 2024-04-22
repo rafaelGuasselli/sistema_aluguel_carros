@@ -20,7 +20,7 @@ class GerenciadorJanelas():
 		self.carroService = CarroService()
 		self.aluguelService = AluguelService()
 		self.funcionarioService = FuncionarioService()
-		self.clienteService = ClienteService()	
+		self.clienteService = ClienteService()
 		self.criarJanelaHome()
 
 	def criarJanelaHome(self):
@@ -41,6 +41,17 @@ class GerenciadorJanelas():
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
 			login=(not estaLogado),
 			logout=estaLogado
+		)
+	
+	def atualizarLista(self):
+		carros = self.carroService.listar()
+		self.root.lista.criarLista(
+			self.root.controller,
+			carros,
+			self.root.alugar,
+			self.root.editar,
+			self.root.remover,
+			self.root.pagar
 		)
 
 	def criarJanelaAlugarCarro(self, carro):

@@ -15,7 +15,7 @@ class JanelaCriarCarroController:
 			carro.taxa_hora = int(self.view.getTaxaHora())
 			carro.taxa_dia = int(self.view.getTaxaDiaria())
 			self.carroService.criar(carro=carro)
-			self.gerenciador.atualizarJanelaHome()
+			self.gerenciador.atualizarLista()
 			self.fecharJanela()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))

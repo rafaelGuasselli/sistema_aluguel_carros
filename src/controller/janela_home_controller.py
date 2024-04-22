@@ -10,7 +10,7 @@ class JanelaHomeController:
 	def pagar(self,carro):
 		try:
 			self.__pagar(carro)
-			self.gerenciador.atualizarJanelaHome()
+			self.gerenciador.atualizarLista()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 
@@ -62,7 +62,7 @@ class JanelaHomeController:
 	def remover(self,carro):
 		try:
 			self.__remover(carro)
-			self.gerenciador.atualizarJanelaHome()
+			self.gerenciador.atualizarLista()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 	

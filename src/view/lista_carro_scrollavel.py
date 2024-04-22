@@ -7,6 +7,7 @@ class ListaCarroScrollavel(ContainerScrollavel):
 		super().__init__(parent, *args, **kw)
 
 	def criarLista(self, controller, lista=[], alugar=False, editar=False, remover=False, pagar=False):
+		self.__removerTodosOsElementosDaJanela()
 		self.container.config(pady=10)
 		self.controller = controller
 		for linha, elemento in enumerate(lista):
@@ -62,3 +63,7 @@ class ListaCarroScrollavel(ContainerScrollavel):
 	def __adicionarBotaoAlugar(self, container, onclick):
 		botaoAlugar = Tk.Button(container, text="Alugar", command=onclick)
 		botaoAlugar.pack(side="right", padx=10)
+
+	def __removerTodosOsElementosDaJanela(self):
+		for child in self.container.winfo_children(): 
+			child.destroy()

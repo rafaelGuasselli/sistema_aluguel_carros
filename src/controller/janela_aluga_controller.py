@@ -22,7 +22,7 @@ class JanelaAlugaController:
 	def cadastrar(self):
 		try:
 			self.__cadastrar()
-			self.gerenciador.atualizarJanelaHome()
+			self.gerenciador.atualizarLista()
 			self.fecharJanela()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))

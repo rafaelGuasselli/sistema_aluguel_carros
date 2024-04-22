@@ -11,12 +11,18 @@ class JanelaHome(Tk.Tk):
 		self.gerenciador = gerenciador
 		self.controller = JanelaHomeController(gerenciador, self)
 		self.inicializar()
+		
 
 	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False, login=False, logout=False):
 		self.__removerTodosOsElementosDaJanela()
 		self.title("Home")
 		self.rowconfigure(2, weight=10)
 		self.columnconfigure(0, weight=1)
+
+		self.editar = editarCarros
+		self.alugar = alugarCarros
+		self.remover = removerCarros
+		self.pagar = pagarCarros
 
 		self.__adicionarSuperior(gerenciarUsuarios=gerenciarUsuarios, adicionarCarros=adicionarCarros, login=login, logout=logout)
 		self.__criaSeparadorSuperiorCentral()
