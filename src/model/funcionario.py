@@ -1,7 +1,6 @@
 class Funcionario:
 	def __init__(self):
 		self.id = None
-		self.cpf = ""
 		self.nome = ""
 		self.senha = ""
 		self.permissoes = 0
@@ -16,4 +15,4 @@ class Funcionario:
 		return (self.permissoes & 1<<0) > 0
 
 	def __str__(self):
-		return "CPF: {}, Nome: {}, Permissões: {}".format(self.cpf, self.nome, self.permissoes)
+		return "Nome: {}, Permissões: {}".format(self.nome, self.permissoes)

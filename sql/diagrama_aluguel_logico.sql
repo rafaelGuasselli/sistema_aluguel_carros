@@ -25,8 +25,7 @@ CREATE TABLE Carros (
 
 CREATE TABLE Funcionarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cpf VARCHAR(50) UNIQUE,
-    nome VARCHAR(50),
+    nome VARCHAR(50) UNIQUE,
     permissoes INTEGER,
 	hash_senha VARCHAR(128)
 );

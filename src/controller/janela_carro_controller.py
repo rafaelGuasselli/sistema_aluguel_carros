@@ -12,7 +12,6 @@ class JanelaCarroController:
 			self.gerenciador.criarJanelaErro(str(erro))
 
 	def editar(self, carro):
-		print("HAHAHAHHAHAHAHA")
 		try:
 			self.gerenciador.criarJanelaEditarCarro(carro)
 		except Exception as erro:

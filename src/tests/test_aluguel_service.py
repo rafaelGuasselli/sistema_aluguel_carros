@@ -17,9 +17,6 @@ class TestAluguelService(unittest.TestCase):
 		self.aluguelService = AluguelService()
 		self.funcionarioService = FuncionarioService()
 
-	def login(self):
-		self.funcionarioService.logout()
-		self.funcionarioService.login("435.402.600-72", "admin")
 
 	def test_aluguel_aceito(self):
 		self.login()
@@ -93,3 +90,7 @@ class TestAluguelService(unittest.TestCase):
 	
 	def criarStringAleatoria(self, tamanho):
 		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))
+
+	def login(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("admin", "admin")

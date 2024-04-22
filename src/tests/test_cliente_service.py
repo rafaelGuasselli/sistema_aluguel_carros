@@ -76,11 +76,11 @@ class TestClienteService(unittest.TestCase):
 
 	def login(self):
 		self.funcionarioService.logout()
-		self.funcionarioService.login("366.667.700-20", "12345")
+		self.funcionarioService.login("teste_cliente", "12345")
 
 	def login_sem_permissao(self):
 		self.funcionarioService.logout()
-		self.funcionarioService.login("366.667.700-19", "12345")
+		self.funcionarioService.login("teste_sem_permissao", "12345")
 
 	def criarStringAleatoria(self, tamanho):
 		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))

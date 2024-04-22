@@ -8,20 +8,20 @@ class FuncionarioService:
 		self.funcionarioMapper = FuncionarioMapper()
 		self.cacheMapper = CacheMapper()
 	
-	def login(self, cpf, senha):
+	def login(self, nome, senha):
 		try:
-			self.__login(cpf, senha)
+			self.__login(nome, senha)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao logar!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
-	def __login(self, cpf, senha):
+	def __login(self, nome, senha):
 		self.logout()
 		#salt = uuid.uuid4().hex
 		#TODO: Adicionar salt.
 		senha_hash = hashlib.sha512(bytes(senha, 'utf-8')).hexdigest()
-		funcionario = self.funcionarioMapper.listarCpfSenha(cpf, senha_hash)
+		funcionario = self.funcionarioMapper.listarNomeSenha(nome, senha_hash)
 		
 		if funcionario is None:
 			raise Exception("Usuário ou senha incorretos!")

@@ -10,27 +10,23 @@ class TestCarroMapper(unittest.TestCase):
 		super(TestCarroMapper, self).__init__(*args, **kwargs)
 		self.cacheMapper = CacheMapper()
 		self.funcionarioService = FuncionarioService()
-
-	def login(self):
-		self.funcionarioService.logout()
-		self.funcionarioService.login("435.402.600-72", "admin")
 	
 	def test_criar_sucesso(self):
 		self.login()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 		funcionario.id = self.funcionarioService.criar(funcionario)
 		
 		self.cacheMapper.deletar()
 		self.cacheMapper.criar(funcionario=funcionario)
 		funcionarioNoCache = self.cacheMapper.listar()
 
-		self.assertEqual(funcionario.cpf, funcionarioNoCache.cpf)
+		self.assertEqual(funcionario.nome, funcionarioNoCache.nome)
 
 	def test_criar_ja_existe(self):
 		self.login()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 		funcionario.id = self.funcionarioService.criar(funcionario)
 		
 		self.cacheMapper.deletar()
@@ -41,7 +37,7 @@ class TestCarroMapper(unittest.TestCase):
 	def test_select(self):
 		self.login()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 		funcionario.id = self.funcionarioService.criar(funcionario)
 		
 		self.cacheMapper.deletar()
@@ -53,7 +49,7 @@ class TestCarroMapper(unittest.TestCase):
 	def test_delete(self):
 		self.login()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 		funcionario.id = self.funcionarioService.criar(funcionario)
 		
 		self.cacheMapper.deletar()
@@ -61,6 +57,10 @@ class TestCarroMapper(unittest.TestCase):
 		self.cacheMapper.deletar()
 		funcionarioNoCache = self.cacheMapper.listar()
 		self.assertIsNone(funcionarioNoCache)
+
+	def login(self):
+		self.funcionarioService.logout()
+		self.funcionarioService.login("admin", "admin")
 
 	def criarStringAleatoria(self, tamanho):
 		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))

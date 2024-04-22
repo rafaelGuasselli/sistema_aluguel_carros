@@ -6,32 +6,32 @@ class FuncionarioMapper(SqlMapper):
 		super(FuncionarioMapper, self).__init__()
 	
 	def criar(self, funcionario):
-		sql = "INSERT INTO Funcionarios(cpf, nome, permissoes) VALUES (?,?,?);"
-		values = (funcionario.cpf, funcionario.nome, funcionario.permissoes)
+		sql = "INSERT INTO Funcionarios(nome, permissoes) VALUES (?,?);"
+		values = (funcionario.nome, funcionario.permissoes)
 		return super()._insert(sql, values)
 	
 	def atualizar(self, funcionario):
-		sql = "UPDATE Funcionarios SET cpf = ?, nome = ?, permissoes = ? WHERE id = ?;"
-		values = (funcionario.cpf, funcionario.nome, funcionario.permissoes, funcionario.id)
+		sql = "UPDATE Funcionarios SET nome = ?, permissoes = ? WHERE id = ?;"
+		values = (funcionario.nome, funcionario.permissoes, funcionario.id)
 		return super()._update(sql, values)
 		
 	def listar(self):
-		sql = "SELECT id, cpf, nome, permissoes FROM Funcionarios;"
+		sql = "SELECT id, nome, permissoes FROM Funcionarios;"
 		values = ()
-		fields = ("id", "cpf", "nome", "permissoes")
+		fields = ("id", "nome", "permissoes")
 		return super()._select(sql, values, fields, Funcionario)
 
 	def listarId(self, id=None):
-		sql = "SELECT id, cpf, nome, permissoes FROM Funcionarios WHERE id = ?;"
+		sql = "SELECT id, nome, permissoes FROM Funcionarios WHERE id = ?;"
 		values = (id,)
-		fields = ("id", "cpf", "nome", "permissoes")
+		fields = ("id", "nome", "permissoes")
 		funcionarios = super()._select(sql, values, fields, Funcionario)
 		return None if len(funcionarios) == 0 else funcionarios[0]
 
-	def listarCpfSenha(self, cpf=None, senha=None):
-		sql = "SELECT id, cpf, nome, permissoes FROM Funcionarios WHERE cpf = ? and hash_senha = ?;"
-		values = (cpf, senha)
-		fields = ("id", "cpf", "nome", "permissoes")
+	def listarNomeSenha(self, nome=None, senha=None):
+		sql = "SELECT id, nome, permissoes FROM Funcionarios WHERE nome = ? and hash_senha = ?;"
+		values = (nome, senha)
+		fields = ("id", "nome", "permissoes")
 		funcionarios = super()._select(sql, values, fields, Funcionario)
 		return None if len(funcionarios) == 0 else funcionarios[0]
 

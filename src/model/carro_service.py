@@ -17,7 +17,7 @@ class CarroService:
 			raise Exception(mensagem)
 
 	def __criar(self, carro):
-		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		funcionarioAtual = self.funcionarioService.usuarioAtual()
 		naoTemPermissao = not funcionarioAtual.podeAlterarCarros()
 		naoEstaLogado = not self.funcionarioService.estaLogado()
 		if (naoEstaLogado or naoTemPermissao):
@@ -35,7 +35,7 @@ class CarroService:
 			raise Exception(mensagem)
 	
 	def __atualizar(self, carro):
-		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		funcionarioAtual = self.funcionarioService.usuarioAtual()
 		naoTemPermissao = not funcionarioAtual.podeAlterarCarros()
 		naoEstaLogado = not self.funcionarioService.estaLogado()
 		if (naoEstaLogado or naoTemPermissao):
@@ -69,7 +69,7 @@ class CarroService:
 			raise Exception(mensagem)
 	
 	def __deletar(self, carro):
-		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		funcionarioAtual = self.funcionarioService.usuarioAtual()
 		naoTemPermissao = not funcionarioAtual.podeAlterarCarros()
 		naoEstaLogado = not self.funcionarioService.estaLogado()
 		if (naoEstaLogado or naoTemPermissao):

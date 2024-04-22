@@ -11,9 +11,9 @@ class CacheMapper(SqlMapper):
 		return super()._insert(sql, values)	
 	
 	def listar(self):
-		sql = "SELECT funcionario_atual as id, nome, cpf, permissoes FROM Cache INNER JOIN Funcionarios funcionario ON (funcionario.id = funcionario_atual);"
+		sql = "SELECT funcionario_atual as id, nome, permissoes FROM Cache INNER JOIN Funcionarios funcionario ON (funcionario.id = funcionario_atual);"
 		values = ()
-		fields = ("id", "nome", "cpf", "permissoes")
+		fields = ("id", "nome", "permissoes")
 		funcionarios = super()._select(sql, values, fields, Funcionario)
 		return None if len(funcionarios) == 0 else funcionarios[0]
 

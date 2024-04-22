@@ -25,7 +25,7 @@ class GerenciadorJanelas():
 
 	def criarJanelaCarros(self):
 		carros = self.carroService.listar()
-		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		funcionarioAtual = self.funcionarioService.usuarioAtual()
 		self.root = JanelaCarros(self, 
 			listaCarros=carros, 
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
@@ -39,7 +39,7 @@ class GerenciadorJanelas():
 
 	def atualizarJanelaCarros(self):
 		carros = self.carroService.listar()
-		funcionarioAtual = self.funcionarioService.usuarioAtual() or Funcionario()
+		funcionarioAtual = self.funcionarioService.usuarioAtual()
 		self.root.inicializar(
 			listaCarros=carros, 
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
@@ -56,7 +56,6 @@ class GerenciadorJanelas():
 		pass
 	
 	def criarJanelaEditarCarro(self, carro):
-		print("KAKAKKAKAKA")
 		JanelaEditarCarro(self, carro)
 
 	def criarJanelaLogin(self):

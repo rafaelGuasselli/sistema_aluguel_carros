@@ -5,14 +5,12 @@ class JanelaEditarController:
 		self.funcionarioService = self.gerenciador.funcionarioService
 
 	def alugar(self,carro):
-		print(carro)
 		try:
 			self.gerenciador.criarJanelaAlugarCarro(carro)
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 
 	def editar(self, carro):
-		print("HAHAHAHHAHAHAHA")
 		try:
 			self.gerenciador.criarJanelaEditarCarro(carro)
 		except Exception as erro:

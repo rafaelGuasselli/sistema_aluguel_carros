@@ -11,11 +11,11 @@ class TestFuncionarioService(unittest.TestCase):
 
 	def test_login_aceito(self):
 		self.funcionarioService.logout()
-		self.funcionarioService.login("435.402.600-72", "admin")
+		self.funcionarioService.login("admin", "admin")
 
 	def test_login_rejeitado(self):
 		self.funcionarioService.logout()
-		self.assertRaises(Exception, lambda: self.funcionarioService.login("435.402.600-72", ""))
+		self.assertRaises(Exception, lambda: self.funcionarioService.login("abc", ""))
 
 	def test_logout(self):
 		self.login()
@@ -25,19 +25,19 @@ class TestFuncionarioService(unittest.TestCase):
 	def test_criar(self):
 		self.login()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(14)
+		funcionario.nome = self.criarStringAleatoria(50)
 		self.funcionarioService.criar(funcionario)
 	
 	def test_criar_sem_permissao(self):
 		self.login_sem_permissao()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(14)
+		funcionario.nome = self.criarStringAleatoria(50)
 		self.assertRaises(Exception, lambda: self.funcionarioService.criar(funcionario))
 
 	def test_criar_falha(self):
 		self.login()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(14)
+		funcionario.nome = self.criarStringAleatoria(50)
 
 		self.funcionarioService.criar(funcionario)
 		self.assertRaises(Exception, lambda: self.funcionarioService.criar(funcionario))
@@ -52,7 +52,7 @@ class TestFuncionarioService(unittest.TestCase):
 
 	def atualizar(self):
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(14)
+		funcionario.nome = self.criarStringAleatoria(50)
 		self.funcionarioService.criar(funcionario)
 		self.funcionarioService.atualizar(funcionario)
 
@@ -64,7 +64,7 @@ class TestFuncionarioService(unittest.TestCase):
 	def test_listar_id(self):
 		self.login()
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(14)
+		funcionario.nome = self.criarStringAleatoria(50)
 		funcionario.id = self.funcionarioService.criar(funcionario)
 
 		funcionarios = self.funcionarioService.listar(id=funcionario.id)
@@ -80,17 +80,17 @@ class TestFuncionarioService(unittest.TestCase):
 
 	def deletar(self):
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(14)
+		funcionario.nome = self.criarStringAleatoria(50)
 		funcionario.id = self.funcionarioService.criar(funcionario)
 		self.funcionarioService.deletar(funcionario)
 
 	def login(self):
 		self.funcionarioService.logout()
-		self.funcionarioService.login("435.402.600-72", "admin")
+		self.funcionarioService.login("admin", "admin")
 
 	def login_sem_permissao(self):
 		self.funcionarioService.logout()
-		self.funcionarioService.login("366.667.700-19", "12345")
+		self.funcionarioService.login("teste_atendente", "12345")
 
 	def criarStringAleatoria(self, tamanho):
 		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))

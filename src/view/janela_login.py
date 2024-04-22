@@ -17,20 +17,20 @@ class JanelaLogin(Tk.Toplevel):
 		self.container.columnconfigure(1, weight=8, minsize=250)
 		self.container.place(in_=self, anchor='center', relx=.5, rely=.5)
 
-		self.__adicionarInputDoCpf(self.container)
+		self.__adicionarInputDoNome(self.container)
 		self.__adicionarInputDeSenha(self.container)
 		self.__adicionarBotaoDeLogin(self.container, self.controller.login)
 
-	def getCPF(self):
-		return self.inputCPF.get()
+	def getNome(self):
+		return self.inputNome.get()
 
 	def getSenha(self):
 		return self.inputSenha.get()
 
-	def __adicionarInputDoCpf(self, container):
-		self.labelCPF = Tk.Label(container, text="CPF: ", font=("Arial", 16, "bold"), justify="left").grid(sticky="W",column=0, row=0)
-		self.inputCPF = Tk.Entry(container, name="cpf")
-		self.inputCPF.grid(column=1, row=0, sticky="ew")
+	def __adicionarInputDoNome(self, container):
+		self.labelNome = Tk.Label(container, text="Nome: ", font=("Arial", 16, "bold"), justify="left").grid(sticky="W",column=0, row=0)
+		self.inputNome = Tk.Entry(container, name="nome")
+		self.inputNome.grid(column=1, row=0, sticky="ew")
 	
 	def __adicionarInputDeSenha(self, container):
 		self.labelSenha = Tk.Label(container, text="Senha: ", font=("Arial", 16, "bold"), justify="left").grid(sticky="W",column=0, row=1)

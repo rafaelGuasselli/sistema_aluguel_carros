@@ -17,28 +17,28 @@ class TestFuncionarioMapper(unittest.TestCase):
 
 	def test_insert(self):
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 
 		funcionario.id = self.funcionarioMapper.criar(funcionario)
 
 		funcionarioNoBanco = self.funcionarioMapper.listarId(id=funcionario.id)
-		self.assertEqual(funcionario.cpf, funcionarioNoBanco.cpf)
+		self.assertEqual(funcionario.nome, funcionarioNoBanco.nome)
 
 	def test_update(self):
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 
 		funcionario.id = self.funcionarioMapper.criar(funcionario)
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 
 		self.funcionarioMapper.atualizar(funcionario)
 
 		funcionarioNoBanco = self.funcionarioMapper.listarId(id=funcionario.id)
-		self.assertEqual(funcionario.cpf, funcionarioNoBanco.cpf)
+		self.assertEqual(funcionario.nome, funcionarioNoBanco.nome)
 
 	def test_delete(self):
 		funcionario = Funcionario()
-		funcionario.cpf = self.criarStringAleatoria(11)
+		funcionario.nome = self.criarStringAleatoria(50)
 
 		funcionario.id = self.funcionarioMapper.criar(funcionario)
 		self.funcionarioMapper.deletar(id=funcionario.id)

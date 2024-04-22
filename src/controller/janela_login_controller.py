@@ -13,9 +13,9 @@ class JanelaLoginController:
 			self.gerenciador.criarJanelaErro(str(erro))
 
 	def __login(self):
-		cpf = self.view.getCPF()
+		nome = self.view.getNome()
 		senha = self.view.getSenha()
-		self.funcionarioService.login(cpf, senha)
+		self.funcionarioService.login(nome, senha)
 
 	def fecharJanela(self):
 		self.view.destroy()
