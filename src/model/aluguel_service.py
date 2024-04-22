@@ -49,7 +49,7 @@ class AluguelService:
 		if carro is None:
 			raise Exception("Carro não existe!")
 		
-		if not isinstance(carro.data_aluguel, datetime):
+		if carro.cliente_id is None:
 			raise Exception("Carro não está alugado!")
 
 		preco = carro.calcularPreco()
