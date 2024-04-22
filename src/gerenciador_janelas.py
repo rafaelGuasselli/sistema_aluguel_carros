@@ -21,7 +21,6 @@ class GerenciadorJanelas():
 		self.aluguelService = AluguelService()
 		self.funcionarioService = FuncionarioService()
 		self.clienteService = ClienteService()	
-		# atexit.register(self.funcionarioService.logout)
 		self.criarJanelaHome()
 
 	def criarJanelaHome(self):
@@ -40,7 +39,7 @@ class GerenciadorJanelas():
 			pagarCarros=funcionarioAtual.podeAlterarCarros(),
 			removerCarros=funcionarioAtual.podeAlterarCarros()
 		)
-	
+
 	def criarJanelaAlugarCarro(self, carro):
 		JanelaAluga(self, carro)
 
