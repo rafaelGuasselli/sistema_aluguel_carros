@@ -32,7 +32,8 @@ class GerenciadorJanelas():
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
 			editarCarros=funcionarioAtual.podeAlterarCarros(),
 			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios(),
-			pagarCarros=funcionarioAtual.podeAlterarCarros()
+			pagarCarros=funcionarioAtual.podeAlterarCarros(),
+			removerCarros=funcionarioAtual.podeAlterarCarros()
 		)
 
 		self.root.mainloop()
@@ -46,7 +47,8 @@ class GerenciadorJanelas():
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
 			editarCarros=funcionarioAtual.podeAlterarCarros(),
 			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios(),
-			pagarCarros=funcionarioAtual.podeAlterarCarros()
+			pagarCarros=funcionarioAtual.podeAlterarCarros(),
+			removerCarros=funcionarioAtual.podeAlterarCarros()
 		)
 	
 	def criarJanelaAlugarCarro(self, carro):

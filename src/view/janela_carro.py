@@ -23,10 +23,9 @@ class JanelaCarro(Tk.Toplevel):
 
 		self.__adicionarCampoPlaca()
 		self.__adicionarCampoModelo()
-		self.__adicionarCampoTaxaHora()
 		self.__adicionarCampoCor()
 		self.__adicionarCampoTaxaDiaria()
-		self.__adicionarCampoCor()
+		self.__adicionarCampoTaxaHora()
 		self.__adicionarBotaoFinalizar()
 
 	def __adicionarCampoPlaca(self):
