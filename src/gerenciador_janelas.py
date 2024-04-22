@@ -2,7 +2,7 @@ import atexit
 
 from model.funcionario import Funcionario
 
-from view.janela_erro import JanelaErro
+from view.janela_popup import JanelaPopup
 from view.janela_login import JanelaLogin
 from view.janela_carro import JanelaCarros
 from view.janela_aluga import JanelaAluga
@@ -57,5 +57,7 @@ class GerenciadorJanelas():
 		JanelaLogin(self)
 
 	def criarJanelaErro(self, mensagem):
-		JanelaErro(mensagem)
-		
+		self.criarPopup("erro", mensagem)
+	
+	def criarPopup(self, titulo, mensagem):
+		JanelaPopup(titulo, mensagem)

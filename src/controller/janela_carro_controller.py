@@ -3,9 +3,9 @@ class JanelaCarroController:
 		self.view = view
 		self.gerenciador = gerenciador
 		self.funcionarioService = self.gerenciador.funcionarioService
+		self.aluguelService = self.gerenciador.aluguelService
 
 	def alugar(self,carro):
-		print(carro)
 		try:
 			self.gerenciador.criarJanelaAlugarCarro(carro)
 		except Exception as erro:
@@ -25,10 +25,9 @@ class JanelaCarroController:
 			self.gerenciador.criarJanelaErro(str(erro))
 
 	def __pagar(self, carro):
-		carro.cliente_id = None
-		self.gerenciador.carroService.atualizar(carro)
+		preco = self.aluguelService.pagar(carro)
+		self.gerenciador.criarPopup("Pagar", "R${:.2f}".format(preco))
 
-	
 	def logout(self):
 		try:
 			self.gerenciador.funcionarioService.logout()

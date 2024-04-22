@@ -42,7 +42,7 @@ INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES
 	'OTM 2X22',
 	'Celta',
 	1000,
-	'2021-12-01 14:30:15'
+	Null
 );
 
 INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
@@ -51,7 +51,7 @@ INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES
 	'RIO2A18',
 	'Go',
 	2000,
-	'2021-12-01 14:30:15'
+	Null
 );
 
 

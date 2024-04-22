@@ -1,5 +1,6 @@
 from .carro_service import CarroService
 from .cliente_service import ClienteService
+from datetime import date, datetime
 
 class AluguelService:
 	def __init__(self):
@@ -31,6 +32,7 @@ class AluguelService:
 
 		cliente = self.clienteService.listar(cpf=cliente.cpf)
 		carro.cliente_id = cliente.id
+		carro.data_aluguel = datetime.combine(date.today(), datetime.min.time())
 		self.carroService.atualizar(carro=carro)
 	
 	def pagar(self, carro):
