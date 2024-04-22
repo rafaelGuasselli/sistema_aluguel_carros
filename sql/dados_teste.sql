@@ -36,22 +36,21 @@ INSERT INTO Funcionarios(nome, hash_senha, cpf, permissoes) VALUES (
 	0
 );
 
---Multas são aplicadas caso o carro seja devolvido 1 hora após o esperado.
-INSERT INTO Carros(cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VALUES (
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
 	'Vermelho',
-	300,
+	50,
 	'OTM 2X22',
 	'Celta',
-	500,
+	1000,
 	'2021-12-01 14:30:15'
 );
 
-INSERT INTO Carros(cor, multa, placa, modelo, taxa_dia, estimativa_devolucao) VALUES (
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
 	'Prata',
 	100,
 	'RIO2A18',
 	'Go',
-	200,
+	2000,
 	'2021-12-01 14:30:15'
 );
 

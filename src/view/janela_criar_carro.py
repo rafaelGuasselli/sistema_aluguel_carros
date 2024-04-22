@@ -28,10 +28,6 @@ class JanelaCriarCarro(Tk.Toplevel):
         Tk.Label(self, text="Taxa hora:").grid(column=0, sticky="W", padx=(10,0), pady=(0,20), row=3)
         Tk.Entry(self).grid(column=1, sticky="WE", row=3, padx=(0,10), pady=(0,20))
 
-        # Multa
-        Tk.Label(self, text="Multa:").grid(column=0, sticky="W", padx=(10,0), pady=(0,20), row=4)
-        Tk.Entry(self).grid(column=1, sticky="WE", row=4, padx=(0,10), pady=(0,20))
-
         # Botao adicionar
         Tk.Button(self, text="Adicionar carro", command=self.__click_adicionar_carro_button).grid(column=0, columnspan=2, sticky="S")
 

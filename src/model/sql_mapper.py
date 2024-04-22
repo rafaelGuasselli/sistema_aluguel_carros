@@ -1,7 +1,7 @@
 import sqlite3
 class SqlMapper:
 	def __init__(self):
-		self.connection = sqlite3.connect("aluguel_carros.db")
+		self.connection = sqlite3.connect("aluguel_carros.db", detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
 		self.connection.row_factory = sqlite3.Row
 		self.cursor = self.connection.cursor()
 
