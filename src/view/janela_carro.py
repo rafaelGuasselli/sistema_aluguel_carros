@@ -7,7 +7,7 @@ from controller.janela_carro_controller import JanelaCarroController
 class JanelaCarros(Tk.Tk):
 	def __init__(self, gerenciador, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
 		super().__init__()
-		self.geometry("800x600")
+		self.geometry("1200x600")
 		self.gerenciador = gerenciador
 		self.controller = JanelaCarroController(gerenciador, self)
 		self.inicializar(listaCarros, gerenciarUsuarios, adicionarCarros, editarCarros, alugarCarros, removerCarros, pagarCarros)
