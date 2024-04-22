@@ -6,6 +6,7 @@ from view.janela_erro import JanelaErro
 from view.janela_login import JanelaLogin
 from view.janela_carro import JanelaCarros
 from view.janela_aluga import JanelaAluga
+from view.janela_criar_carro import JanelaCriarCarro
 
 from model.carro_service import CarroService
 from model.aluguel_service import AluguelService
@@ -16,8 +17,9 @@ class GerenciadorJanelas():
 	def __init__(self):
 		self.carroService = CarroService()
 		self.aluguelService = AluguelService()
-		self.funcionarioService = FuncionarioService()	
-		atexit.register(self.funcionarioService.logout)
+		self.funcionarioService = FuncionarioService()
+		self.clienteService = ClienteService()	
+		# atexit.register(self.funcionarioService.logout)
 
 		self.criarJanelaCarros()
 
@@ -43,8 +45,8 @@ class GerenciadorJanelas():
 			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios()
 		)
 	
-	def criarJanelaAlugarCarro(self):
-		pass
+	def criarJanelaAlugarCarro(self, carro):
+		JanelaAluga(self, carro)
 
 	def criarJanelaCriarCarro(self):
 		pass
@@ -55,6 +57,4 @@ class GerenciadorJanelas():
 
 	def criarJanelaErro(self, mensagem):
 		JanelaErro(mensagem)
-	
-	def criarJanelaAluga(self, carro):
-		JanelaAluga(self, carro)
+		

@@ -4,9 +4,10 @@ class JanelaCarroController:
 		self.gerenciador = gerenciador
 		self.funcionarioService = self.gerenciador.funcionarioService
 
-	def alugar(carro):
+	def alugar(self,carro):
+		print(carro)
 		try:
-			self.gerenciador.criarJanelaAlugarCarro()
+			self.gerenciador.criarJanelaAlugarCarro(carro)
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 
@@ -28,3 +29,4 @@ class JanelaCarroController:
 			self.gerenciador.criarJanelaLogin()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
+	

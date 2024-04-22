@@ -1,5 +1,6 @@
 import tkinter as Tk
 from view.container_scrollavel import ContainerScrollavel
+from functools import partial
 
 class ListaScrollavel(ContainerScrollavel):
 	def __init__(self, parent, *args, **kw):
@@ -8,14 +9,17 @@ class ListaScrollavel(ContainerScrollavel):
 	def criarLista(self, controller, lista=[], alugar=False, editar=False, remover=False):
 		self.controller = controller
 		for elemento in lista:
+			funcAlugar = partial(self.controller.alugar, elemento)
+			funcEditar = partial(self.controller.editar, elemento)
+			funcRemover = partial(self.controller.remover, elemento)
 			self.__adicionarElemento(
 				texto = str(elemento),
 				alugar=alugar,
 				editar=editar,
 				remover=remover,
-				onAlugar=lambda: self.controller.alugar(elemento),
-				onEditar=lambda: self.controller.editar(elemento),
-				onRemover=lambda: self.controller.remover(elemento)
+				onAlugar=funcAlugar,
+				onEditar=funcEditar,
+				onRemover=funcRemover
 			)
 
 	def __adicionarElemento(self, texto, onAlugar, onEditar, onRemover, alugar=False, editar=False, remover=False):
@@ -37,16 +41,13 @@ class ListaScrollavel(ContainerScrollavel):
 		
 
 	def __adicionarBotaoRemover(self, container, onclick):
-		botaoRemover = Tk.Button(container, text="Remover")
+		botaoRemover = Tk.Button(container, text="Remover", command=onclick)
 		botaoRemover.pack(side="right")
-		botaoRemover.command = onclick
 
 	def __adicionarBotaoEditar(self, container, onclick):
-		botaoEditar = Tk.Button(container, text="Editar")
+		botaoEditar = Tk.Button(container, text="Editar", command=onclick)
 		botaoEditar.pack(side="right", padx=(10,0))	
-		botaoEditar.command = onclick		
-	
+				
 	def __adicionarBotaoAlugar(self, container, onclick):
-		botaoAlugar = Tk.Button(container, text="Alugar")
+		botaoAlugar = Tk.Button(container, text="Alugar", command=onclick)
 		botaoAlugar.pack(side="right", padx=10)
-		botaoAlugar.command = onclick
