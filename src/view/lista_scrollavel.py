@@ -32,7 +32,6 @@ class ListaScrollavel(ContainerScrollavel):
 		
 		containerCarro.pack(expand=True, fill='both', pady=(0,10), padx=10)
 
-
 		label = Tk.Label(containerCarro, text=texto, justify="left")
 		label.grid(column=0, row=0, sticky="W")
 
@@ -54,7 +53,7 @@ class ListaScrollavel(ContainerScrollavel):
 
 	def __adicionarBotaoEditar(self, container, onclick):
 		botaoEditar = Tk.Button(container, text="Editar", command=onclick)
-		botaoEditar.pack(side="right", padx=(10,0))	
+		botaoEditar.pack(side="right", padx=(10,10))	
 				
 	def __adicionarBotaoAlugar(self, container, onclick):
 		botaoAlugar = Tk.Button(container, text="Alugar", command=onclick)

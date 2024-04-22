@@ -33,4 +33,4 @@ class JanelaCriarCarro(Tk.Toplevel):
         Tk.Button(self, text="Adicionar carro", command=self.__click_adicionar_carro_button).grid(column=0, columnspan=2, sticky="S")
 
     def __click_adicionar_carro_button(self):
-        print("criando carro")
+        pass

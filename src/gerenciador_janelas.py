@@ -7,6 +7,7 @@ from view.janela_login import JanelaLogin
 from view.janela_carro import JanelaCarros
 from view.janela_aluga import JanelaAluga
 from view.janela_criar_carro import JanelaCriarCarro
+from view.janela_editar_carro import JanelaEditarCarro
 
 from model.carro_service import CarroService
 from model.aluguel_service import AluguelService
@@ -29,6 +30,7 @@ class GerenciadorJanelas():
 			listaCarros=carros, 
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
+			editarCarros=funcionarioAtual.podeAlterarCarros(),
 			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios(),
 			pagarCarros=funcionarioAtual.podeAlterarCarros()
 		)
@@ -42,6 +44,7 @@ class GerenciadorJanelas():
 			listaCarros=carros, 
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
+			editarCarros=funcionarioAtual.podeAlterarCarros(),
 			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios(),
 			pagarCarros=funcionarioAtual.podeAlterarCarros()
 		)
@@ -51,7 +54,10 @@ class GerenciadorJanelas():
 
 	def criarJanelaCriarCarro(self):
 		pass
-
+	
+	def criarJanelaEditarCarro(self, carro):
+		print("KAKAKKAKAKA")
+		JanelaEditarCarro(self, carro)
 
 	def criarJanelaLogin(self):
 		JanelaLogin(self)

@@ -1,4 +1,4 @@
-class JanelaCarroController:
+class JanelaEditarController:
 	def __init__(self, gerenciador, view):
 		self.view = view
 		self.gerenciador = gerenciador
