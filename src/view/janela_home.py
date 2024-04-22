@@ -1,7 +1,7 @@
 import tkinter as Tk
 from tkinter import ttk
 from tkinter.constants import *
-from view.lista_scrollavel import ListaScrollavel
+from view.lista_carro_scrollavel import ListaCarroScrollavel
 from controller.janela_home_controller import JanelaHomeController
 
 class JanelaHome(Tk.Tk):
@@ -33,7 +33,7 @@ class JanelaHome(Tk.Tk):
 		ttk.Separator(self, orient="horizontal").grid(sticky="WE", column=0, row=1)
 
 	def __adicionarListaDeCarros(self, listaCarros=[], editar=False, alugar=False, remover=False, pagar=False):
-		self.lista = ListaScrollavel(self)
+		self.lista = ListaCarroScrollavel(self)
 		self.lista.criarLista(self.controller, listaCarros, alugar, editar, remover, pagar)
 		self.lista.grid(sticky="WE", row=2, column=0)
 

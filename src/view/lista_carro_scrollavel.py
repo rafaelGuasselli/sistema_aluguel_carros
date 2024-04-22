@@ -2,19 +2,20 @@ import tkinter as Tk
 from view.container_scrollavel import ContainerScrollavel
 from functools import partial
 
-class ListaScrollavel(ContainerScrollavel):
+class ListaCarroScrollavel(ContainerScrollavel):
 	def __init__(self, parent, *args, **kw):
 		super().__init__(parent, *args, **kw)
 
 	def criarLista(self, controller, lista=[], alugar=False, editar=False, remover=False, pagar=False):
 		self.controller = controller
-		for elemento in lista:
+		for linha, elemento in enumerate(lista):
 			funcAlugar = partial(self.controller.alugar, elemento)
 			funcEditar = partial(self.controller.editar, elemento)
 			funcPagar = partial(self.controller.pagar, elemento)
 			funcRemover = partial(self.controller.remover, elemento)
 			self.__adicionarElemento(
-				texto=str(elemento),
+				linha,
+				carro=elemento,
 				alugar=alugar,
 				editar=editar,
 				pagar=pagar,
@@ -25,18 +26,21 @@ class ListaScrollavel(ContainerScrollavel):
 				onRemover=funcRemover
 			)
 
-	def __adicionarElemento(self, texto, onAlugar, onPagar, onEditar, onRemover, alugar=False, pagar=False, editar=False, remover=False):
-		containerCarro = Tk.Frame(self.container)
-		containerCarro.columnconfigure(0, weight=3)
-		containerCarro.columnconfigure(1, weight=2)
-		
-		containerCarro.pack(expand=True, fill='both', pady=(0,10), padx=10)
+	def __adicionarElemento(self, linha, carro, onAlugar, onPagar, onEditar, onRemover, alugar=False, pagar=False, editar=False, remover=False):
+		# containerCarro = Tk.Frame(self.container)
+		self.container.columnconfigure((0,1,2,3,4,5,6), weight=1)
+		self.container.columnconfigure(7, weight=3)
 
-		label = Tk.Label(containerCarro, text=texto, justify="left")
-		label.grid(column=0, row=0, sticky="W")
+		Tk.Label(self.container, text="Modelo: " + carro.modelo).grid(row=linha, column=0, sticky="W", padx=(10,0) )
+		Tk.Label(self.container, text="Placa: " + carro.placa).grid(row=linha, column=1, sticky="W")
+		Tk.Label(self.container, text="Cor: " + carro.cor).grid(row=linha, column=2, sticky="W")
+		Tk.Label(self.container, text="Taxa hora: " + str(carro.taxa_hora)).grid(row=linha, column=3, sticky="W")
+		Tk.Label(self.container, text="Taxa diária: " + str(carro.taxa_dia)).grid(row=linha, column=4, sticky="W")
+		Tk.Label(self.container, text="Data alguel: " + str(carro.data_aluguel)).grid(row=linha, column=5, sticky="W")
+		Tk.Label(self.container, text="Alugado: " + str(carro.estaAlugado())).grid(row=linha, column=6, sticky="W")
 
-		containerButtons = Tk.Frame(containerCarro)
-		containerButtons.grid(row=0, column=1, sticky="E")
+		containerButtons = Tk.Frame(self.container)
+		containerButtons.grid(row=linha, column=7, sticky="E")
 
 		if alugar: self.__adicionarBotaoAlugar(containerButtons, onAlugar)
 		if pagar: self.__adicionarBotaoPagar(containerButtons,onPagar)
