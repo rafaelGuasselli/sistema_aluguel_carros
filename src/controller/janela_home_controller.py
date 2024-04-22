@@ -6,27 +6,6 @@ class JanelaHomeController:
 		self.aluguelService = self.gerenciador.aluguelService
 		self.carroService = self.gerenciador.carroService
 
-	def alugar(self,carro):
-		try:
-			self.gerenciador.criarJanelaAlugarCarro(carro)
-		except Exception as erro:
-			self.gerenciador.criarJanelaErro(str(erro))
-
-	def editar(self, carro):
-		try:
-			self.gerenciador.criarJanelaEditarCarro(carro)
-		except Exception as erro:
-			self.gerenciador.criarJanelaErro(str(erro))
-
-	def remover(self,carro):
-		try:
-			self.__remover(carro)
-			self.gerenciador.atualizarJanelaHome()
-		except Exception as erro:
-			self.gerenciador.criarJanelaErro(str(erro))
-	
-	def __remover(self, carro):
-		self.carroService.deletar(carro)
 
 	def pagar(self,carro):
 		try:
@@ -61,3 +40,24 @@ class JanelaHomeController:
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
 	
+	def alugar(self,carro):
+		try:
+			self.gerenciador.criarJanelaAlugarCarro(carro)
+		except Exception as erro:
+			self.gerenciador.criarJanelaErro(str(erro))
+
+	def editar(self, carro):
+		try:
+			self.gerenciador.criarJanelaEditarCarro(carro)
+		except Exception as erro:
+			self.gerenciador.criarJanelaErro(str(erro))
+
+	def remover(self,carro):
+		try:
+			self.__remover(carro)
+			self.gerenciador.atualizarJanelaHome()
+		except Exception as erro:
+			self.gerenciador.criarJanelaErro(str(erro))
+	
+	def __remover(self, carro):
+		self.carroService.deletar(carro)

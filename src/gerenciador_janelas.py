@@ -37,7 +37,8 @@ class GerenciadorJanelas():
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
 			editarCarros=funcionarioAtual.podeAlterarCarros(),
-			pagarCarros=funcionarioAtual.podeAlterarCarros()
+			pagarCarros=funcionarioAtual.podeAlterarCarros(),
+			removerCarros=funcionarioAtual.podeAlterarCarros()
 		)
 	
 	def criarJanelaAlugarCarro(self, carro):
