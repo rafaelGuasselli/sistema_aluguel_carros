@@ -38,7 +38,7 @@ class ClienteService:
 		
 		return self.clienteMapper.atualizar(cliente)
 
-	def listar(self, id=0, cpf="", cliente=None):
+	def listar(self, id=None, cpf=None, cliente=None):
 		try:
 			return self.__listar(id=id, cpf=cpf, cliente=cliente)
 		except Exception as error:
@@ -46,13 +46,13 @@ class ClienteService:
 			mensagem = "Falha ao ler cliente no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
-	def __listar(self, id=0, cpf=None, cliente=None):
+	def __listar(self, id=None, cpf=None, cliente=None):
 		clientes = False
-		if cpf or (cliente and cliente.cpf):
-			cpf = cpf or cliente.cpf
+		if id is None and isinstance(cliente, Cliente): id = cliente.id
+		if cpf is None and isinstance(cliente, Cliente): cpf = cliente.cpf
+		if cpf:
 			clientes = self.clienteMapper.listarCpf(cpf=cpf)
-		elif id or (cliente and cliente.id):
-			id = id or cliente.id
+		elif id:
 			clientes = self.clienteMapper.listarId(id=id)
 		else:
 			clientes = self.clienteMapper.listar()

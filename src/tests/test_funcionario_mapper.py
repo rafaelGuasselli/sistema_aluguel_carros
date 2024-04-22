@@ -33,7 +33,7 @@ class TestFuncionarioMapper(unittest.TestCase):
 
 		self.funcionarioMapper.atualizar(funcionario)
 
-		funcionarioNoBanco = self.funcionarioMapper.listarId(funcionario=funcionario)
+		funcionarioNoBanco = self.funcionarioMapper.listarId(id=funcionario.id)
 		self.assertEqual(funcionario.cpf, funcionarioNoBanco.cpf)
 
 	def test_delete(self):

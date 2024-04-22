@@ -1,3 +1,4 @@
+from .carro import Carro
 from .funcionario import Funcionario
 from .carro_mapper import CarroMapper
 from .cache_mapper import CacheMapper
@@ -37,25 +38,27 @@ class CarroService:
 			raise Exception("Funcionario não tem permissão de alterar carros!")
 		return self.carroMapper.atualizar(carro)
 
-	def listar(self, id=0, carro=None):
+	def listar(self, id=None, carro=None):
 		try:
-			return self.__listar(id, carro)
+			return self.__listar(id=id, carro=carro)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao ler carros no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
-	def __listar(self, id=0, carro=None):
-		carros = False
-		if id or carro:
-			carros = self.carroMapper.listarId(id=id,carro=carro)
+	def __listar(self, id=None, carro=None):
+		carros = []
+
+		if id is None and isinstance(carro, Carro): id = carro.id
+		if id:
+			carros = self.carroMapper.listarId(id=id)
 		else:
 			carros = self.carroMapper.listar()		
 		return carros
 
 	def deletar(self, carro):
 		try:
-			self.carroMapper.deletar(carro=carro)
+			self.__deletar(carro=carro)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao deletar carro no banco de dados!\n{}".format(detalhes)
@@ -65,4 +68,4 @@ class CarroService:
 		funcionarioAtual = self.cacheMapper.listar() or Funcionario()
 		if (funcionarioAtual.podeAlterarCarros() is False):
 			raise Exception("Funcionario não tem permissão de alterar carros!")
-		self.carroMapper.deletar(carro=carro)
+		self.carroMapper.deletar(id=carro.id)

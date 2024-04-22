@@ -21,21 +21,21 @@ class FuncionarioMapper(SqlMapper):
 		fields = ("id", "cpf", "nome", "permissoes")
 		return super()._select(sql, values, fields, Funcionario)
 
-	def listarId(self, id=0, funcionario=Funcionario()):
+	def listarId(self, id=None):
 		sql = "SELECT id, cpf, nome, permissoes FROM Funcionarios WHERE id = ?;"
-		values = (id or funcionario.id,)
+		values = (id,)
 		fields = ("id", "cpf", "nome", "permissoes")
 		funcionarios = super()._select(sql, values, fields, Funcionario)
 		return None if len(funcionarios) == 0 else funcionarios[0]
 
-	def listarCpfSenha(self, cpf="", senha=""):
+	def listarCpfSenha(self, cpf=None, senha=None):
 		sql = "SELECT id, cpf, nome, permissoes FROM Funcionarios WHERE cpf = ? and hash_senha = ?;"
 		values = (cpf, senha)
 		fields = ("id", "cpf", "nome", "permissoes")
 		funcionarios = super()._select(sql, values, fields, Funcionario)
 		return None if len(funcionarios) == 0 else funcionarios[0]
 
-	def deletar(self, id=0,funcionario=Funcionario()):
+	def deletar(self, id=None):
 		sql = "DELETE FROM Funcionarios WHERE id = ?;"
-		values = (id or funcionario.id,)
+		values = (id,)
 		super()._delete(sql, values)

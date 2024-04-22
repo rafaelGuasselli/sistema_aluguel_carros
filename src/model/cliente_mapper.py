@@ -21,7 +21,7 @@ class ClienteMapper(SqlMapper):
 		fields = ("id", "cpf", "nome")
 		return super()._select(sql, values, fields, Cliente)
 	
-	def listarId(self, id=0):
+	def listarId(self, id=None):
 		sql = "SELECT id, cpf, nome FROM Clientes WHERE id = ?;"
 		values = (id,)
 		fields = ("id", "cpf", "nome")
@@ -36,7 +36,7 @@ class ClienteMapper(SqlMapper):
 		clientes = super()._select(sql, values, fields, Cliente)
 		return None if len(clientes) == 0 else clientes[0]
 
-	def deletar(self, id=0,cliente=None):
+	def deletar(self, id=None,cliente=None):
 		sql = "DELETE FROM Clientes WHERE id = ?;"
 		values = (id or cliente.id,)
 		super()._delete(sql, values)

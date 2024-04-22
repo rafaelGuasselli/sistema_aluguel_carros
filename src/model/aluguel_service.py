@@ -19,6 +19,7 @@ class AluguelService:
 		carro = self.carroService.listar(carro=carro)
 		clienteNoBanco = self.clienteService.listar(cliente=cliente)
 		
+
 		if carro is None:
 			raise Exception("Carro não existe!")
 		

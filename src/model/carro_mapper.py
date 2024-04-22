@@ -21,14 +21,14 @@ class CarroMapper(SqlMapper):
 		fields = ("id", "cor", "taxa_hora", "placa", "modelo", "taxa_dia", "cliente_id", "data_aluguel")
 		return super()._select(sql, values, fields, Carro)
 	
-	def listarId(self, id=0,carro=Carro()):
+	def listarId(self, id=None):
 		sql = "SELECT id, cor, taxa_hora, placa, modelo, taxa_dia, cliente_id, data_aluguel FROM Carros WHERE id = ?;"
-		values = (id or carro.id,)
+		values = (id,)
 		fields = ("id", "cor", "taxa_hora", "placa", "modelo", "taxa_dia", "cliente_id", "data_aluguel")
 		carros = super()._select(sql, values, fields, Carro)
 		return None if len(carros) == 0 else carros[0]
 
-	def deletar(self, id=0,carro=Carro()):
+	def deletar(self, id=None):
 		sql = "DELETE FROM Carros WHERE id = ?;"
-		values = (id or carro.id,)
+		values = (id,)
 		super()._delete(sql, values)

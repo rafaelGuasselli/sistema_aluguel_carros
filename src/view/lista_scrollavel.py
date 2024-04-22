@@ -14,7 +14,7 @@ class ListaScrollavel(ContainerScrollavel):
 			funcPagar = partial(self.controller.pagar, elemento)
 			funcRemover = partial(self.controller.remover, elemento)
 			self.__adicionarElemento(
-				texto = str(elemento),
+				texto=str(elemento),
 				alugar=alugar,
 				editar=editar,
 				pagar=pagar,

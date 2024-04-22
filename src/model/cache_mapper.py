@@ -5,7 +5,7 @@ class CacheMapper(SqlMapper):
 	def __init__(self):
 		super(CacheMapper, self).__init__()
 
-	def criar(self, id=0, funcionario=None):
+	def criar(self, id=None, funcionario=None):
 		sql = "INSERT INTO Cache(funcionario_atual) VALUES (?);"
 		values = (id or funcionario.id,)
 		return super()._insert(sql, values)	

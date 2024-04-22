@@ -20,7 +20,7 @@ class FuncionarioService:
 	def __login(self, cpf, senha):
 		self.logout()
 		#salt = uuid.uuid4().hex
-		#TODO: Adicionar salt se tiver tempo.
+		#TODO: Adicionar salt.
 		senha_hash = hashlib.sha512(bytes(senha, 'utf-8')).hexdigest()
 		funcionario = self.funcionarioMapper.listarCpfSenha(cpf, senha_hash)
 		
@@ -39,12 +39,6 @@ class FuncionarioService:
 	
 	def __logout(self):
 		self.cacheMapper.deletar()
-
-	def estaLogado(self):
-		return self.cacheMapper.listar() != None
-
-	def usuarioAtual(self):
-		return self.cacheMapper.listar()
 
 	def criar(self, funcionario):
 		try:
@@ -77,7 +71,7 @@ class FuncionarioService:
 
 		return self.funcionarioMapper.atualizar(funcionario)
 
-	def listar(self, id=0, funcionario=None):
+	def listar(self, id=None, funcionario=None):
 		try:
 			return self.__listar(id, funcionario)
 		except Exception as error:
@@ -85,10 +79,11 @@ class FuncionarioService:
 			mensagem = "Falha ao ler funcionarios no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 	
-	def __listar(self, id=0, funcionario=None):
+	def __listar(self, id=None, funcionario=None):
 		funcionarios = False
-		if id or funcionario:
-			funcionarios = self.funcionarioMapper.listarId(id=id,funcionario=funcionario)
+		if id is None and isinstance(funcionario, Funcionario): id = funcionario.id
+		if id:
+			funcionarios = self.funcionarioMapper.listarId(id=id)
 		else:
 			funcionarios = self.funcionarioMapper.listar()
 		
@@ -107,4 +102,10 @@ class FuncionarioService:
 		if (funcionarioAtual.podeAlterarFuncionarios() is False):
 			raise Exception("Funcionario não tem permissão de alterar funcionarios!")
 
-		return self.funcionarioMapper.deletar(funcionario=funcionario)
+		return self.funcionarioMapper.deletar(id=funcionario.id)
+	
+	def estaLogado(self):
+		return self.cacheMapper.listar() != None
+
+	def usuarioAtual(self):
+		return self.cacheMapper.listar()
