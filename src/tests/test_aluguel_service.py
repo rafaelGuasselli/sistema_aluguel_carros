@@ -77,7 +77,7 @@ class TestAluguelService(unittest.TestCase):
 		self.aluguelService.pagar(carro)
 
 		carro = self.carroService.listar(carro=carro)
-		self.assertEqual(carro.cliente_id, cliente.id)
+		self.assertIsNone(carro.cliente_id)
 
 	def test_pagar_carro_nao_existe(self):
 		self.login()

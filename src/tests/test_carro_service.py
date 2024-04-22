@@ -78,7 +78,7 @@ class TestCarroService(unittest.TestCase):
 
 	def login(self):
 		self.funcionarioService.logout()
-		self.funcionarioService.login("366.667.700-21", "12345")
+		self.funcionarioService.login("a", "12345")
 
 	def login_sem_permissao(self):
 		self.funcionarioService.logout()

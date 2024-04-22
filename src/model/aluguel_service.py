@@ -17,11 +17,12 @@ class AluguelService:
 	def __alugar(self, carro, cliente):
 		carro = self.carroService.listar(carro=carro)
 		clienteNoBanco = self.clienteService.listar(cliente=cliente)
+		
 		if carro is None:
 			raise Exception("Carro não existe!")
 		
 		if clienteNoBanco is None:
-			self.clienteService.criar(cliente=cliente)
+			cliente.id = self.clienteService.criar(cliente=cliente)
 		else:
 			self.clienteService.atualizar(cliente=cliente)
 
@@ -45,8 +46,6 @@ class AluguelService:
 
 		if carro is None:
 			raise Exception("Carro não existe!")
-
-		
 
 		carro.cliente_id = None
 		carro.data_aluguel = None
