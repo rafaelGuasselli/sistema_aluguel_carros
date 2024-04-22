@@ -12,6 +12,7 @@ class JanelaLogin(Tk.Toplevel):
 		self.__removerTodosOsElementosDaJanela()
 
 		self.geometry("400x300")
+		self.title("Login")	
 		self.container = Tk.Frame(self)
 		self.container.columnconfigure(0, weight=1)
 		self.container.columnconfigure(1, weight=8, minsize=250)

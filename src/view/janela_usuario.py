@@ -6,6 +6,7 @@ class JanelaUsuarios(Tk.Toplevel):
     def __init__(self, master) -> None:
         super().__init__(master)
         self.geometry("500x700")
+        self.title("Gerenciar usuários")	
         self.addUser = Tk.Frame(self)
         Tk.Button(self.addUser, text="Adicionar usuário", command=self.__click_adicionar_usuario_event).pack(pady=10)
         self.addUser.pack()

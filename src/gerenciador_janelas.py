@@ -1,13 +1,13 @@
 import atexit
 
 from model.funcionario import Funcionario
+from model.carro import Carro
 
 from view.janela_popup import JanelaPopup
 from view.janela_login import JanelaLogin
-from view.janela_carro import JanelaCarros
+from view.janela_home import JanelaHome
 from view.janela_aluga import JanelaAluga
-from view.janela_criar_carro import JanelaCriarCarro
-from view.janela_editar_carro import JanelaEditarCarro
+from view.janela_carro import JanelaCarro
 
 from model.carro_service import CarroService
 from model.aluguel_service import AluguelService
@@ -21,12 +21,12 @@ class GerenciadorJanelas():
 		self.funcionarioService = FuncionarioService()
 		self.clienteService = ClienteService()	
 		# atexit.register(self.funcionarioService.logout)
-		self.criarJanelaCarros()
+		self.criarJanelaHome()
 
-	def criarJanelaCarros(self):
+	def criarJanelaHome(self):
 		carros = self.carroService.listar()
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
-		self.root = JanelaCarros(self, 
+		self.root = JanelaHome(self, 
 			listaCarros=carros, 
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
@@ -37,7 +37,7 @@ class GerenciadorJanelas():
 
 		self.root.mainloop()
 
-	def atualizarJanelaCarros(self):
+	def atualizarJanelaHome(self):
 		carros = self.carroService.listar()
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
 		self.root.inicializar(
@@ -52,11 +52,8 @@ class GerenciadorJanelas():
 	def criarJanelaAlugarCarro(self, carro):
 		JanelaAluga(self, carro)
 
-	def criarJanelaCriarCarro(self):
-		pass
-	
-	def criarJanelaEditarCarro(self, carro):
-		JanelaEditarCarro(self, carro)
+	def criarJanelaCarro(self, carro=Carro()):
+		JanelaCarro(self, carro)
 
 	def criarJanelaLogin(self):
 		JanelaLogin(self)

@@ -1,73 +1,81 @@
 import tkinter as Tk
-from tkinter import ttk
-from tkinter.constants import *
-from view.lista_scrollavel import ListaScrollavel
-from controller.janela_carro_controller import JanelaCarroController
 
-class JanelaCarros(Tk.Tk):
-	def __init__(self, gerenciador, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
+from controller.janela_carro_controller import JanelaCarroController 
+
+class JanelaCarro(Tk.Toplevel):
+	def __init__(self, gerenciador, carro):
 		super().__init__()
-		self.geometry("1200x600")
 		self.gerenciador = gerenciador
 		self.controller = JanelaCarroController(gerenciador, self)
-		self.inicializar(listaCarros, gerenciarUsuarios, adicionarCarros, editarCarros, alugarCarros, removerCarros, pagarCarros)
+		self.carro = carro
+		self.resizable(False,False)
+		self.inicializar()
 
-	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
+	def inicializar(self):
 		self.__removerTodosOsElementosDaJanela()
-		self.title("Janela Carro")
-		self.rowconfigure(2, weight=10)
-		self.columnconfigure(0, weight=1)
+		self.geometry("400x250")
+		self.title("Carro")
+		self.container = Tk.Frame(self)
+		self.container.columnconfigure(0, weight=2)
+		self.container.columnconfigure(1, weight=3)
+		self.container.columnconfigure(2, weight=1)
+		self.container.pack(fill=Tk.BOTH, expand=True, padx=10, pady=10)
 
-		self.__adicionarSuperior(gerenciarUsuarios=gerenciarUsuarios, adicionarCarros=adicionarCarros)
-		self.__criaSeparadorSuperiorCentral()
-		self.__adicionarListaDeCarros(
-			listaCarros=listaCarros,
-			editar=editarCarros, 
-			alugar=alugarCarros, 
-			remover=removerCarros,
-			pagar=pagarCarros
-		)
+		self.__adicionarCampoPlaca()
+		self.__adicionarCampoModelo()
+		self.__adicionarCampoTaxaHora()
+		self.__adicionarCampoCor()
+		self.__adicionarCampoTaxaDiaria()
+		self.__adicionarCampoCor()
+		self.__adicionarBotaoFinalizar()
 
+	def __adicionarCampoPlaca(self):
+		Tk.Label(self.container, text="Placa:").grid(column=0, row=0, sticky="W", pady=(0,10))
+		self.inputPlaca = Tk.Entry(self.container)
+		self.inputPlaca.insert(0, self.carro.placa)
+		self.inputPlaca.grid(column=1, row=0, sticky="WE", pady=(0,10))
+	
+	def __adicionarCampoModelo(self):
+		Tk.Label(self.container, text="Modelo:").grid(column=0, row=1, sticky="W", pady=(0,10))
+		self.inputModelo = Tk.Entry(self.container)
+		self.inputModelo.insert(0, self.carro.modelo)
+		self.inputModelo.grid(column=1, row=1, sticky="WE", pady=(0,10))
+	
+	def __adicionarCampoCor(self):
+		Tk.Label(self.container, text="Cor:").grid(column=0, row=2, sticky="W", pady=(0,10))
+		self.inputCor = Tk.Entry(self.container)
+		self.inputCor.insert(0, self.carro.cor)
+		self.inputCor.grid(column=1, row=2, sticky="WE", pady=(0,10))
 
-	def __criaSeparadorSuperiorCentral(self):
-		ttk.Separator(self, orient="horizontal").grid(sticky="WE", column=0, row=1)
+	def __adicionarCampoTaxaDiaria(self):
+		Tk.Label(self.container, text="Taxa diária:").grid(column=0, row=3, sticky="W", pady=(0,10))
+		self.inputTaxaDiaria = Tk.Entry(self.container)
+		self.inputTaxaDiaria.insert(0, self.carro.taxa_dia)
+		self.inputTaxaDiaria.grid(column=1, row=3, sticky="WE", pady=(0,10))
+	
+	def __adicionarCampoTaxaHora(self):
+		Tk.Label(self.container, text="Taxa p/ hora:").grid(column=0, row=4, sticky="W", pady=(0,10))
+		self.inputTaxaHora = Tk.Entry(self.container)
+		self.inputTaxaHora.insert(0, self.carro.taxa_hora)
+		self.inputTaxaHora.grid(column=1, row=4, sticky="WE", pady=(0,10))
 
-	def __adicionarListaDeCarros(self, listaCarros=[], editar=False, alugar=False, remover=False, pagar=False):
-		self.lista = ListaScrollavel(self)
-		self.lista.criarLista(self.controller, listaCarros, alugar, editar, remover, pagar)
-		self.lista.grid(sticky="WE", row=2, column=0)
+	def __adicionarBotaoFinalizar(self):
+		Tk.Button(self.container, command=self.controller.finalizar, text="Finalizar").grid(column=1, row=5, pady=(0,10))
 
-	def __adicionarBotaoLogin(self, container):
-		self.botaoLogin = Tk.Button(container, text="Login", command=self.controller.telaLogin)
-		self.botaoLogin.pack(side="right", padx=(0,20), pady=10)
+	def getPlaca(self):
+		return self.inputPlaca.get()
 
-	def __adicionarBotaoLogout(self, container):
-		self.botaoLogout = Tk.Button(container, text="Logout", command=self.controller.logout)
-		self.botaoLogout.pack(side="right", padx=(0,20), pady=10)
+	def getModelo(self):
+		return self.inputModelo.get()
 
-	def __adicionarSuperior(self, gerenciarUsuarios=False, adicionarCarros=False):
-		self.superior = Tk.Frame(self)
-		self.superior.grid(row=0, sticky="NSWE")
-
-		self.__adicionarLabelVeiculos(self.superior)
-		self.__adicionarBotaoLogout(self.superior)
-		self.__adicionarBotaoLogin(self.superior)
-
-		if adicionarCarros: self.__adicionarBotaoAdicionarCarros(self.superior)
-		if gerenciarUsuarios: self.__adicionarBotaoGerenciarUsuario(self.superior)
-
-
-	def __adicionarBotaoGerenciarUsuario(self, container):
-		self.botaoGerenciarUsuarios = Tk.Button(container, text="Gerenciar usuários")
-		self.botaoGerenciarUsuarios.pack(side="right", padx=(0,20), pady=10)
-
-	def __adicionarBotaoAdicionarCarros(self, container):
-		self.botaoAdicionarCarros = Tk.Button(container, text="Adicionar carros")
-		self.botaoAdicionarCarros.pack(side="right", padx=(0,20), pady=10)
-		
-	def __adicionarLabelVeiculos(self, container):
-		self.labelVeiculos = Tk.Label(container, text="Veículos", font=("Arial", 18, "bold"))
-		self.labelVeiculos.pack(side="left", padx=(10,0))
+	def getCor(self):
+		return self.inputCor.get()
+	
+	def getTaxaDiaria(self):
+		return self.inputTaxaDiaria.get()
+	
+	def getTaxaHora(self):
+		return self.inputTaxaHora.get()
 
 	def __removerTodosOsElementosDaJanela(self):
 		for child in self.winfo_children(): 

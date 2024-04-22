@@ -10,10 +10,10 @@ class JanelaAluga(Tk.Toplevel):
 		self.carro = carro
 		self.inicializar()
 		
-
 	def inicializar(self):
 		self.__removerTodosOsElementosDaJanela()
 		self.geometry("400x180")
+		self.title("Alugar carro")	
 		self.container = Tk.Frame(self)
 		self.container.columnconfigure(0, weight=2)
 		self.container.columnconfigure(1, weight=3)
@@ -24,13 +24,12 @@ class JanelaAluga(Tk.Toplevel):
 		self.__adicionarCampoNome()
 		self.__adicionarBotaoFinalizar()
 
-
 	def __adicionarCampoCPF(self):
 		Tk.Label(self.container, text="CPF:").grid(column=0, row=0, sticky="W", pady=(0,10))
 		self.inputCPF = Tk.Entry(self.container)
 		self.inputCPF.grid(column=1, row=0, sticky="WE", pady=(0,10))
 		Tk.Button(self.container,command=self.controller.procurar, text="Procurar").grid(column=3, row=0, sticky="E", pady=(0,10))
-	
+
 	def __adicionarCampoNome(self):
 		Tk.Label(self.container, text="Nome:").grid(column=0, row=1, sticky="W", pady=(0,10))
 		self.inputNome = Tk.Entry(self.container)
