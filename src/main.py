@@ -1,2 +1,2 @@
-from gerenciador_janelas import GerenciadorJanelas
+from controller.gerenciador_janelas import GerenciadorJanelas
 gerenciador = GerenciadorJanelas()
