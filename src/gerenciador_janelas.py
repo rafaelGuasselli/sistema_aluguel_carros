@@ -33,11 +33,11 @@ class GerenciadorJanelas():
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
 		self.root.inicializar(
 			listaCarros=carros, 
-			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
-			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
+			pagarCarros=funcionarioAtual.podeAlugar(),
+			alugarCarros=funcionarioAtual.podeAlugar(), 
 			editarCarros=funcionarioAtual.podeAlterarCarros(),
-			pagarCarros=funcionarioAtual.podeAlterarCarros(),
-			removerCarros=funcionarioAtual.podeAlterarCarros()
+			removerCarros=funcionarioAtual.podeAlterarCarros(),
+			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
 		)
 
 	def criarJanelaAlugarCarro(self, carro):

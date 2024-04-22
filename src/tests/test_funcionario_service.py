@@ -90,7 +90,7 @@ class TestFuncionarioService(unittest.TestCase):
 
 	def login_sem_permissao(self):
 		self.funcionarioService.logout()
-		self.funcionarioService.login("teste_atendente", "12345")
+		self.funcionarioService.login("teste_sem_permissao", "12345")
 
 	def criarStringAleatoria(self, tamanho):
 		return ''.join(random.choices(string.ascii_uppercase + string.digits, k=tamanho))

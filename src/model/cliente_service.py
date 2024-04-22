@@ -18,7 +18,7 @@ class ClienteService:
 	
 	def __criar(self, cliente):
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
-		naoTemPermissao = not funcionarioAtual.podeAlterarClientes()
+		naoTemPermissao = not funcionarioAtual.podeAlugar()
 		naoEstaLogado = not self.funcionarioService.estaLogado()
 		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar clientes!")
@@ -35,7 +35,7 @@ class ClienteService:
 
 	def __atualizar(self, cliente):
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
-		naoTemPermissao = not funcionarioAtual.podeAlterarClientes()
+		naoTemPermissao = not funcionarioAtual.podeAlugar()
 		naoEstaLogado = not self.funcionarioService.estaLogado()
 		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar clientes!")
@@ -73,7 +73,7 @@ class ClienteService:
 
 	def __deletar(self, cliente):
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
-		naoTemPermissao = not funcionarioAtual.podeAlterarClientes()
+		naoTemPermissao = not funcionarioAtual.podeAlugar()
 		naoEstaLogado = not self.funcionarioService.estaLogado()
 		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar clientes!")

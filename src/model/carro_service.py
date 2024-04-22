@@ -36,7 +36,7 @@ class CarroService:
 	
 	def __atualizar(self, carro):
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
-		naoTemPermissao = not funcionarioAtual.podeAlterarCarros()
+		naoTemPermissao = not funcionarioAtual.podeAlugar() and not funcionarioAtual.podeAlterarCarros()
 		naoEstaLogado = not self.funcionarioService.estaLogado()
 		if (naoEstaLogado or naoTemPermissao):
 			raise Exception("Funcionario não tem permissão de alterar carros!")
