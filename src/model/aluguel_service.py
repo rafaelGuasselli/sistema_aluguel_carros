@@ -19,7 +19,6 @@ class AluguelService:
 		carro = self.carroService.listar(carro=carro)
 		clienteNoBanco = self.clienteService.listar(cliente=cliente)
 		
-
 		if carro is None:
 			raise Exception("Carro não existe!")
 		
@@ -49,6 +48,9 @@ class AluguelService:
 
 		if carro is None:
 			raise Exception("Carro não existe!")
+		
+		if not isinstance(carro.data_aluguel, datetime):
+			raise Exception("Carro não está alugado!")
 
 		preco = carro.calcularPreco()
 

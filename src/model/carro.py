@@ -12,6 +12,9 @@ class Carro:
 		self.data_aluguel = None
 
 	def calcularPreco(self):
+		if (not isinstance(self.data_aluguel, datetime)):
+			return 0
+
 		hoje = datetime.combine(date.today(), datetime.min.time())
 		diferenca = hoje - self.data_aluguel
 		preco = 0
