@@ -47,7 +47,10 @@ class AluguelService:
 		if carro is None:
 			raise Exception("Carro não existe!")
 
+		preco = carro.calcularPreco()
+
 		carro.cliente_id = None
 		carro.data_aluguel = None
 		self.carroService.atualizar(carro)
 
+		return preco

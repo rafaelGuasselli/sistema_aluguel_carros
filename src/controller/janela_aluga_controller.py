@@ -16,11 +16,13 @@ class JanelaAlugaController:
 	def __procurar(self):
 		cpf = self.view.getCPF()
 		cliente = self.clienteService.listar(cpf=cpf)
-		self.view.setNome(cliente.nome)
+		if cliente:
+			self.view.setNome(cliente.nome)
 	
 	def cadastrar(self):
 		try:
 			self.__cadastrar()
+			self.gerenciador.atualizarJanelaCarros()
 			self.fecharJanela()
 		except Exception as erro:
 			self.gerenciador.criarJanelaErro(str(erro))
