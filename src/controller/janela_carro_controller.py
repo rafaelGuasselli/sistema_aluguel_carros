@@ -5,7 +5,6 @@ class JanelaCarroController:
 		self.funcionarioService = self.gerenciador.funcionarioService
 
 	def alugar(self,carro):
-		print(carro)
 		try:
 			self.gerenciador.criarJanelaAlugarCarro(carro)
 		except Exception as erro:

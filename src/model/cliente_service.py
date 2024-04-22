@@ -1,6 +1,7 @@
 from .cliente_mapper import ClienteMapper
 from .cache_mapper import CacheMapper
 from .funcionario import Funcionario
+from model.cliente import Cliente
 
 class ClienteService:
 	def __init__(self):
@@ -37,26 +38,25 @@ class ClienteService:
 		
 		return self.clienteMapper.atualizar(cliente)
 
-	def listar(self, id=0, cliente=None, cpf=""):
+	def listar(self, id=0, cpf="", cliente=None):
 		try:
-			return self.__listar(id, cliente, cpf=cpf)
+			return self.__listar(id=id, cpf=cpf, cliente=cliente)
 		except Exception as error:
 			detalhes = str(error)
 			mensagem = "Falha ao ler cliente no banco de dados!\n{}".format(detalhes)
 			raise Exception(mensagem)
 
-	def __listar(self, id=0, cliente=None, cpf=None):
+	def __listar(self, id=0, cpf=None, cliente=None):
 		clientes = False
 		if cpf or (cliente and cliente.cpf):
-			print(cpf)
+			cpf = cpf or cliente.cpf
 			clientes = self.clienteMapper.listarCpf(cpf=cpf)
-			print(clientes)
 		elif id or (cliente and cliente.id):
-			print("id")
-			clientes = self.clienteMapper.listarId(id=id,cliente=cliente)
+			id = id or cliente.id
+			clientes = self.clienteMapper.listarId(id=id)
 		else:
 			clientes = self.clienteMapper.listar()
-		
+
 		return clientes
 
 	def deletar(self, cliente):

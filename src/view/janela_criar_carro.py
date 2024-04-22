@@ -21,7 +21,8 @@ class JanelaCriarCarro(Tk.Toplevel):
         Tk.Entry(self).grid(column=1, sticky="WE", row=1, padx=(0,10), pady=(0,20))
 
         # Taxa diaria
-        Tk.Label(self, text="Taxa diaria:").grid(column=0, sticky="W", padx=(10,0), pady=(0,20), row=2)
+        Tk.Label(self, text="Taxa diaria:").grid(column=0,
+         sticky="W", padx=(10,0), pady=(0,20), row=2)
         Tk.Entry(self).grid(column=1, sticky="WE", row=2, padx=(0,10), pady=(0,20))
 
         # Taxa hora

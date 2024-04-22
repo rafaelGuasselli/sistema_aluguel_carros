@@ -17,7 +17,6 @@ class AluguelService:
 	def __alugar(self, carro, cliente):
 		carro = self.carroService.listar(carro=carro)
 		clienteNoBanco = self.clienteService.listar(cliente=cliente)
-		# print(cliente)
 		if carro is None:
 			raise Exception("Carro não existe!")
 		
@@ -29,6 +28,7 @@ class AluguelService:
 		if carro.cliente_id != None:
 			raise Exception("Carro já está alugado!")
 
+		cliente = self.clienteService.listar(cpf=cliente.cpf)
 		carro.cliente_id = cliente.id
 		self.carroService.atualizar(carro=carro)
 	

@@ -12,7 +12,6 @@ class SqlMapper:
 		self.cursor.execute(sql, values)
 		self.connection.commit()
 		return self.cursor.lastrowid
-	
 
 	def _update(self, sql, values):
 		self.cursor.execute(sql, values)

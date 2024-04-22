@@ -20,11 +20,7 @@ class GerenciadorJanelas():
 		self.funcionarioService = FuncionarioService()
 		self.clienteService = ClienteService()	
 		# atexit.register(self.funcionarioService.logout)
-
-		carros = self.carroService.listar()
-		print(carros[0].calcularPreco())
-
-		#self.criarJanelaCarros()
+		self.criarJanelaCarros()
 
 	def criarJanelaCarros(self):
 		carros = self.carroService.listar()

@@ -21,16 +21,17 @@ class ClienteMapper(SqlMapper):
 		fields = ("id", "cpf", "nome")
 		return super()._select(sql, values, fields, Cliente)
 	
-	def listarId(self, id=0, cliente=None):
+	def listarId(self, id=0):
 		sql = "SELECT id, cpf, nome FROM Clientes WHERE id = ?;"
-		values = (id or cliente.id,)
+		values = (id,)
 		fields = ("id", "cpf", "nome")
 		clientes = super()._select(sql, values, fields, Cliente)
 		return None if len(clientes) == 0 else clientes[0]
 	
-	def listarCpf(self, cpf=None, cliente=None):
+	def listarCpf(self, cpf=None):
 		sql = "SELECT id, cpf, nome FROM Clientes WHERE cpf = ?;"
-		values = (cpf or cliente.cpf,)
+
+		values = (cpf,)
 		fields = ("id", "cpf", "nome")
 		clientes = super()._select(sql, values, fields, Cliente)
 		return None if len(clientes) == 0 else clientes[0]

@@ -43,7 +43,6 @@ class JanelaAluga(Tk.Toplevel):
 		return self.inputNome.get()
 
 	def getCPF(self):
-		print("AAA")
 		return self.inputCPF.get()
 
 	def setNome(self, nome):

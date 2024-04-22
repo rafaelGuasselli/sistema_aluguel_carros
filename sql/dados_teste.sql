@@ -56,6 +56,6 @@ INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES
 
 
 INSERT INTO Clientes(cpf, nome) VALUES (
-	'000.000.000-00',
+	'teste',
 	'Rafael'
 );
