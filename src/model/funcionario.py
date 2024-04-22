@@ -11,7 +11,7 @@ class Funcionario:
 	def podeAlterarCarros(self):
 		return (self.permissoes & 1<<1) > 0
 
-	def podeAlterarClientes(self):
+	def podeAlugar(self):
 		return (self.permissoes & 1<<0) > 0
 
 	def __str__(self):
