@@ -11,6 +11,7 @@ class JanelaLogin(Tk.Toplevel):
 	def inicializar(self):
 		self.__removerTodosOsElementosDaJanela()
 
+		self.resizable(False, False)
 		self.geometry("400x300")
 		self.title("Login")	
 		self.container = Tk.Frame(self)
