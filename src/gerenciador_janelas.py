@@ -31,6 +31,7 @@ class GerenciadorJanelas():
 	def atualizarJanelaHome(self):
 		carros = self.carroService.listar()
 		funcionarioAtual = self.funcionarioService.usuarioAtual()
+		estaLogado = self.funcionarioService.estaLogado()
 		self.root.inicializar(
 			listaCarros=carros, 
 			pagarCarros=funcionarioAtual.podeAlugar(),
@@ -38,6 +39,8 @@ class GerenciadorJanelas():
 			editarCarros=funcionarioAtual.podeAlterarCarros(),
 			removerCarros=funcionarioAtual.podeAlterarCarros(),
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
+			login=(not estaLogado),
+			logout=estaLogado
 		)
 
 	def criarJanelaAlugarCarro(self, carro):
