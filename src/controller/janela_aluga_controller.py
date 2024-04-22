@@ -1,7 +1,7 @@
 from model.cliente import Cliente
 
 class JanelaAlugaController:
-	def __init__(self, gerenciador, view) -> None:
+	def __init__(self, gerenciador, view):
 		self.view = view
 		self.gerenciador = gerenciador
 		self.clienteService = self.gerenciador.clienteService
