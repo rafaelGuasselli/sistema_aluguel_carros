@@ -24,17 +24,8 @@ class GerenciadorJanelas():
 		self.criarJanelaHome()
 
 	def criarJanelaHome(self):
-		carros = self.carroService.listar()
-		funcionarioAtual = self.funcionarioService.usuarioAtual()
-		self.root = JanelaHome(self, 
-			listaCarros=carros, 
-			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
-			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
-			editarCarros=funcionarioAtual.podeAlterarCarros(),
-			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios(),
-			pagarCarros=funcionarioAtual.podeAlterarCarros()
-		)
-
+		self.root = JanelaHome(self)
+		self.atualizarJanelaHome()
 		self.root.mainloop()
 
 	def atualizarJanelaHome(self):
@@ -45,7 +36,6 @@ class GerenciadorJanelas():
 			alugarCarros=funcionarioAtual.podeAlterarCarros() and funcionarioAtual.podeAlterarClientes(), 
 			adicionarCarros=funcionarioAtual.podeAlterarCarros(), 
 			editarCarros=funcionarioAtual.podeAlterarCarros(),
-			gerenciarUsuarios=funcionarioAtual.podeAlterarFuncionarios(),
 			pagarCarros=funcionarioAtual.podeAlterarCarros()
 		)
 	

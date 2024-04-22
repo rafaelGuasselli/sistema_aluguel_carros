@@ -5,12 +5,12 @@ from view.lista_scrollavel import ListaScrollavel
 from controller.janela_home_controller import JanelaHomeController
 
 class JanelaHome(Tk.Tk):
-	def __init__(self, gerenciador, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
+	def __init__(self, gerenciador):
 		super().__init__()
 		self.geometry("1200x600")
 		self.gerenciador = gerenciador
 		self.controller = JanelaHomeController(gerenciador, self)
-		self.inicializar(listaCarros, gerenciarUsuarios, adicionarCarros, editarCarros, alugarCarros, removerCarros, pagarCarros)
+		self.inicializar()
 
 	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
 		self.__removerTodosOsElementosDaJanela()
