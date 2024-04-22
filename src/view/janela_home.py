@@ -12,13 +12,13 @@ class JanelaHome(Tk.Tk):
 		self.controller = JanelaHomeController(gerenciador, self)
 		self.inicializar()
 
-	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False):
+	def inicializar(self, listaCarros=[], gerenciarUsuarios=False, adicionarCarros=False, editarCarros=False, alugarCarros=False, removerCarros=False, pagarCarros=False, login=False, logout=False):
 		self.__removerTodosOsElementosDaJanela()
 		self.title("Home")
 		self.rowconfigure(2, weight=10)
 		self.columnconfigure(0, weight=1)
 
-		self.__adicionarSuperior(gerenciarUsuarios=gerenciarUsuarios, adicionarCarros=adicionarCarros)
+		self.__adicionarSuperior(gerenciarUsuarios=gerenciarUsuarios, adicionarCarros=adicionarCarros, login=login, logout=logout)
 		self.__criaSeparadorSuperiorCentral()
 		self.__adicionarListaDeCarros(
 			listaCarros=listaCarros,
@@ -27,7 +27,6 @@ class JanelaHome(Tk.Tk):
 			remover=removerCarros,
 			pagar=pagarCarros
 		)
-
 
 	def __criaSeparadorSuperiorCentral(self):
 		ttk.Separator(self, orient="horizontal").grid(sticky="WE", column=0, row=1)
@@ -45,14 +44,13 @@ class JanelaHome(Tk.Tk):
 		self.botaoLogout = Tk.Button(container, text="Logout", command=self.controller.logout)
 		self.botaoLogout.pack(side="right", padx=(0,20), pady=10)
 
-	def __adicionarSuperior(self, gerenciarUsuarios=False, adicionarCarros=False):
+	def __adicionarSuperior(self, gerenciarUsuarios=False, adicionarCarros=False, login=False, logout=False):
 		self.superior = Tk.Frame(self)
 		self.superior.grid(row=0, sticky="NSWE")
 
 		self.__adicionarLabelVeiculos(self.superior)
-		self.__adicionarBotaoLogout(self.superior)
-		self.__adicionarBotaoLogin(self.superior)
-
+		if logout: self.__adicionarBotaoLogout(self.superior)
+		if login: self.__adicionarBotaoLogin(self.superior)
 		if adicionarCarros: self.__adicionarBotaoAdicionarCarros(self.superior)
 		if gerenciarUsuarios: self.__adicionarBotaoGerenciarUsuario(self.superior)
 
