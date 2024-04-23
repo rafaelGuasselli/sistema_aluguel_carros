@@ -17,7 +17,6 @@ CREATE TABLE Carros (
 	taxa_dia INTEGER,
     taxa_hora INTEGER,
 	data_aluguel TIMESTAMP NULL,
-    estimativa_aluguel TIMESTAMP NULL,
     cliente_id INTEGER NULL,
 	
 	FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
