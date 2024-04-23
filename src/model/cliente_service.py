@@ -1,7 +1,6 @@
+from .cliente import Cliente
 from .cliente_mapper import ClienteMapper
 from .funcionario_service import FuncionarioService
-from .funcionario import Funcionario
-from .cliente import Cliente
 
 class ClienteService:
 	def __init__(self):

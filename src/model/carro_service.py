@@ -1,5 +1,4 @@
 from .carro import Carro
-from .funcionario import Funcionario
 from .carro_mapper import CarroMapper
 from .funcionario_service import FuncionarioService
 
