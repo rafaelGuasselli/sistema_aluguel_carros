@@ -1,6 +1,5 @@
 import atexit
 
-from model.funcionario import Funcionario
 from model.carro import Carro
 
 from view.janela_popup import JanelaPopup
