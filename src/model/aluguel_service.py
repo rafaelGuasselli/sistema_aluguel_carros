@@ -32,7 +32,7 @@ class AluguelService:
 
 		cliente = self.clienteService.listar(cpf=cliente.cpf)
 		carro.cliente_id = cliente.id
-		carro.data_aluguel = datetime.combine(date.today(), datetime.min.time())
+		carro.data_aluguel = datetime.now()
 		self.carroService.atualizar(carro=carro)
 	
 	def pagar(self, carro):

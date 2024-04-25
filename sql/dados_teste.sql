@@ -32,13 +32,14 @@ INSERT INTO Funcionarios(nome, hash_senha, permissoes) VALUES (
 	0
 );
 
-INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
+INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel, cliente_id) VALUES (
 	'Vermelho',
 	50,
 	'OTM-2X22',
 	'Celta',
 	1000,
-	Null
+	"2024-04-23 00:00:00",
+	1
 );
 
 INSERT INTO Carros(cor, taxa_hora, placa, modelo, taxa_dia, data_aluguel) VALUES (
