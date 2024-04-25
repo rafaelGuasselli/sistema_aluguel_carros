@@ -18,7 +18,7 @@ class Carro:
 		if self.taxa_dia == None or self.taxa_hora == None:
 			return 0
 
-		hoje = datetime.combine(date.today(), datetime.min.time())
+		hoje = datetime.now()
 		diferenca = hoje - self.data_aluguel
 		preco = 0
 		preco += diferenca.days * self.taxa_dia

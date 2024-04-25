@@ -7,7 +7,7 @@ from controller.janela_home_controller import JanelaHomeController
 class JanelaHome(Tk.Tk):
 	def __init__(self, gerenciador):
 		super().__init__()
-		self.geometry("1200x600")
+		self.geometry("1400x600")
 		self.gerenciador = gerenciador
 		self.controller = JanelaHomeController(gerenciador, self)
 		self.inicializar()
